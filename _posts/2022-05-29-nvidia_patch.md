@@ -4,15 +4,13 @@ date: '2022-05-29 00:25:06'
 categories: [theserver]
 tags: [docker, gpu]
 image:
-    path: https://www.xda-developers.com/files/2020/05/NVIDIA-GeForce-NOW-1024x683.jpg
+    src: /assets/img/nvidia-header.jpg
     width: 800
     height: 500
 ---
 
 > Instructions on how to bypass the transcoding limit on Nvidia graphics cards using nvidia-patch
 {: .prompt-info}
-
-![](https://www.xda-developers.com/files/2020/05/NVIDIA-GeForce-NOW-1024x683.jpg)
 
 # Install Latest NVIDIA Driver
 
