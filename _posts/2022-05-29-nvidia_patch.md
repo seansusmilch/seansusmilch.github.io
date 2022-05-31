@@ -17,11 +17,21 @@ image:
 Download and install the latest nvidia driver from the table on that one github page
 
 ```bash
+VER=XXX
 sudo apt update
-sudo apt install --no-install-recommends nvidia-cuda-toolkit nvidia-headless-XXX nvidia-utils-XXX libnvidia-encode-XXX
+sudo apt install --no-install-recommends nvidia-cuda-toolkit nvidia-headless-${VER} nvidia-utils-${VER} libnvidia-encode-${VER}
 sudo reboot
-# Test
-nvidia-smi
+```
+
+After a reboot, test with `nvidia-smi`
+```bash
+$ nvidia-smi
+Mon May 30 20:52:01 2022
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 510.73.05    Driver Version: 510.73.05    CUDA Version: 11.6     |
+|-------------------------------+----------------------+----------------------+
+...
+...
 ```
 
 <!-- ## Old Install Instructions
