@@ -57,13 +57,13 @@ Mon May 30 20:52:01 2022
 
 To start over and uninstall everything nvidia, follow these steps.
 
-<!-- ### Installed With Run File
+### Installed With Run File
 
 If you installed the drivers with the .run file from nvidias website, uninstall with this
 
 ```bash
 sudo ./NVIDIA-Linux-x86_64-510.47.03.run --uninstall
-``` -->
+```
 
 ### Installed With apt
 
@@ -97,4 +97,10 @@ sudo git clone https://github.com/keylase/nvidia-patch nvidia-patch
 ```bash
 cd ./nvidia-patch
 sudo bash ./patch.sh
+```
+
+## Oneliner
+
+```bash
+sudo git clone https://github.com/keylase/nvidia-patch nvidia-patch && cd ./nvidia-patch && sudo bash ./patch.sh
 ```
