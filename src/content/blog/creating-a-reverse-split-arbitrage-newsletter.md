@@ -11,7 +11,7 @@ tags:
 - investing
 - ai
 - llm
-draft: true
+draft: false
 ---
 
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities.
@@ -46,4 +46,7 @@ Unless???
 
 ## Value Added
 
-I created this newsletter with the goal of making it dead simple to know when companies are performing reverse splits, and if they're rounding up fractional shares. I've put some time into getting accurate split calendars, full press release articles, and even an AI generated summary that will let you know whether the press release mentions rounding up fractional shares!
+I created this newsletter with the goal of making it dead simple to know when companies are performing reverse splits, and if they're rounding up fractional shares. I've put some time into getting accurate split calendars, full press release articles, and even an AI generated summary that will let you know whether the press release mentions rounding up fractional shares! This achieves my goal in reducing friction of executing this strategy by a decent amount. However, there are still many things that could be improved.
+
+## The Architecture
+
