@@ -11,7 +11,7 @@ tags:
 - investing
 - ai
 - llm
-draft: false
+draft: true
 ---
 
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities.
