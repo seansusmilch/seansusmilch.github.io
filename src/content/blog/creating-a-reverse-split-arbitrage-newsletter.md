@@ -5,16 +5,17 @@ slug: creating-a-reverse-split-arbitrage-newsletter
 title: Creating a Reverse Split Arbitrage Newsletter
 description: How I created a newsletter that scrapes for profitable reverse split opportunities using python.
 featured: true
+draft: false
 tags:
 - python
 - stocks
 - investing
 - ai
 - llm
-draft: true
+- web-scraping
 ---
 
-Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities.
+Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
 Disclaimer: Please remember that any investment involves risk, and that this newsletter is not to be used as financial advice. Do your own research before coming to any sort of financial decisions.
 
@@ -50,3 +51,39 @@ I created this newsletter with the goal of making it dead simple to know when co
 
 ## The Architecture
 
+Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. The whole project can be separated into 4 main components.
+
+![The Stack](@assets/images/reverse-splitter-stack.png)
+*The tech stack*
+
+### Emails (Brevo)
+
+With a newsletter, and email in general, there are many factors that can impact your email deliverability, government compliance, etc. I did not want to think of all that... I wanted to ship, so I chose Brevo as my email provider. I already had an account set up, and they also have a very generous free tier. The main role of Brevo in this project is as follows:
+
+* Handle email contacts (subscribers/unsubscribes)
+* Handle sending all newsletters/campaigns
+
+### Database (Pocketbase)
+
+I want to focus on other parts of the project, not learning a new database. For that reason, I chose Pocketbase as my database. It's just so nice in terms of a decent feature set and API docs. Even though there's no official library for Python, there are good unofficial libraries that do everything I need. The database will handle the following:
+
+* New email subscriptions (not yet in Brevo)
+* Upcoming reverse splits
+* Keep track of whether a reverse split was already sent in a newsletter
+
+### Subscribe Form (AstroJS)
+
+This is pretty much just a simple form that will collect a user's name and email when they want to be subscribed to the newsletter. I chose Astro because I feel it's very quick to set something like this up, plus it gives support for top-level await which I like.
+
+* Submit new subscribers to the backend
+* Give users a quick rundown on reverse splits and how to profit off them
+
+### Backend (Python)
+
+I chose Python cause it's familiar to me, and fast (to write!!!) I suppose this can be further split up... but the main jobs of the backend is as follows:
+
+* Add new subscribers to Brevo
+* Scrape for upcoming reverse splits
+* Scrape for press releases regarding reverse splits
+* Summarize press releases
+* Generate newsletter html and send with Brevo
