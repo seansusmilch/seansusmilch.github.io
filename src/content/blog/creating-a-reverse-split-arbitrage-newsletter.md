@@ -5,7 +5,7 @@ slug: creating-a-reverse-split-arbitrage-newsletter
 title: Creating a Reverse Split Arbitrage Newsletter
 description: How I created a newsletter that scrapes for profitable reverse split opportunities using python.
 featured: true
-draft: false
+draft: true
 tags:
 - python
 - stocks
