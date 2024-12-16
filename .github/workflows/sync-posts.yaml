@@ -42,13 +42,9 @@ jobs:
             pass=$(echo "${WEBDAV_PASSWORD}" | rclone obscure -) \
             --non-interactive
 
-      - name: Pull Markdown files
+      - name: Sync posts
         run: |
-          rclone sync "nc:${SOURCE_POSTS}" "${DEST_POSTS}"
-
-      - name: Parse and sync attachments
-        run: |
-          python scripts/fix-attachments.py
+          python scripts/sync-posts.py
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
