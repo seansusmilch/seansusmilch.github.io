@@ -1,0 +1,55 @@
+name: Sync Posts
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # Runs every day at midnight US Central
+
+jobs:
+  sync-posts:
+    runs-on: ubuntu-latest
+
+    env:
+      WEBDAV_URL: ${{ secrets.WEBDAV_URL }}
+      WEBDAV_USERNAME: ${{ secrets.WEBDAV_USERNAME }}
+      WEBDAV_PASSWORD: ${{ secrets.WEBDAV_PASSWORD }}
+      SOURCE_POSTS: ${{ secrets.SOURCE_POSTS }}
+      DEST_POSTS: ${{ vars.DEST_POSTS }}
+      DEST_ATTACHMENTS: ${{ vars.DEST_ATTACHMENTS }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo -v ; curl https://rclone.org/install.sh | sudo bash
+
+      - name: Setup rclone config
+        run: |
+          rclone config create nc webdav \
+            url=${WEBDAV_URL} \
+            vendor=nextcloud \
+            user=${WEBDAV_USERNAME} \
+            pass=$(echo "${WEBDAV_PASSWORD}" | rclone obscure -) \
+            --non-interactive
+
+      - name: Pull Markdown files
+        run: |
+          rclone sync "nc:${SOURCE_POSTS}" "${DEST_POSTS}"
+
+      - name: Parse and sync attachments
+        run: |
+          python scripts/fix-attachments.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add ${DEST_POSTS} ${DEST_ATTACHMENTS}
+          git commit -m "Sync posts and attachments from WebDAV"
+          git push origin main

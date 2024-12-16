@@ -52,8 +52,7 @@ I created this newsletter with the goal of making it dead simple to know when co
 ## The Architecture
 
 Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. The whole project can be separated into 4 main components.
-
-![The Stack](@assets/images/reverse-splitter-stack.png)
+![[x/blog/reverse-splitter-stack.png]]
 *The tech stack*
 
 ### Emails (Brevo)
