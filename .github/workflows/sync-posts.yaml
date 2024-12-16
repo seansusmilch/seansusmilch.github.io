@@ -9,6 +9,9 @@ jobs:
   sync-posts:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     env:
       WEBDAV_URL: ${{ secrets.WEBDAV_URL }}
       WEBDAV_USERNAME: ${{ secrets.WEBDAV_USERNAME }}
@@ -48,9 +51,6 @@ jobs:
           python scripts/fix-attachments.py
 
       - name: Commit changes
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add ${DEST_POSTS} ${DEST_ATTACHMENTS}
-          git commit -m "Sync posts and attachments from WebDAV"
-          git push origin main
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Sync posts and attachments from WebDAV"
