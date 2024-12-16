@@ -3,6 +3,7 @@ name: Sync Posts
 on:
   schedule:
     - cron: "0 5 * * *" # Runs every day at midnight US Central
+  workflow_dispatch: {}
 
 jobs:
   sync-posts:
