@@ -14,16 +14,6 @@ Just a test page
 # Table of contents
 
 
-
-> [!NOTE] Title
-> Contents
-
-
-> [!WARNING] Warning!!!
-> Contents
-
-
-
 # h1 Heading
 ## h2 Heading
 ### h3 Heading
@@ -31,6 +21,8 @@ Just a test page
 ##### h5 Heading
 ###### h6 Heading
 
+> [!WARNING] Warning!!!
+> Looks like callouts like this dont work on the blog :(
 
 ## Horizontal Rules
 

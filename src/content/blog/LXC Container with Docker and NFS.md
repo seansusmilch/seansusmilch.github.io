@@ -39,7 +39,6 @@ ln -s /home/sean/docker /docker
 6. In Proxmox, set static IP and DNS
 # Setting up NFS
 
-> [!NOTE] 
 > In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
 
 1. Shut down the container if running
