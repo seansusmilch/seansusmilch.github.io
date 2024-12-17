@@ -3,15 +3,24 @@ author: Sean
 pubDatetime: 2024-12-16T14:57:00Z
 slug: the-blog
 title: The Blog 🔥
-description: this is the blog post of all time
+description: This is the blog post of all time
 featured: false
-draft: true
+draft: false
 tags:
   - test
 ---
-Whats up guys
+Just a test page
 
 # Table of contents
+
+
+
+> [!NOTE] Title
+> Contents
+
+
+> [!WARNING] Warning!!!
+> Contents
 
 
 
