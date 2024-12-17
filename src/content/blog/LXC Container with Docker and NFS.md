@@ -13,7 +13,7 @@ tags:
   - nfs
   - linux
   - vms
-ogImage:
+ogImage: "@assets/blog/futuristic-container.png"
 ---
 
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
