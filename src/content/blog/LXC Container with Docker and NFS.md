@@ -14,7 +14,6 @@ tags:
   - linux
   - vms
 ---
-
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
 # Set up LXC container with Docker
 1. Create LXC container with helper scripts.
@@ -39,7 +38,10 @@ ln -s /home/sean/docker /docker
 5. Add ssh key to `~/.ssh/authorized_keys`
 6. In Proxmox, set static IP and DNS
 # Setting up NFS
->In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
+
+> [!NOTE] 
+> In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
+
 1. Shut down the container if running
 2. Backup container
 3. Restore container but change Privilege Level to `Privileged`
