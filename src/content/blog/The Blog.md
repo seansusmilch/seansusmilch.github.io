@@ -5,9 +5,8 @@ slug: the-blog
 title: The Blog 🔥
 description: this is the blog post of all time
 featured: false
-draft: false
+draft: true
 tags:
-  - blog
 ---
 Whats up guys
 
