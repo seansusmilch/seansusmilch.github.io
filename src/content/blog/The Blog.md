@@ -7,6 +7,7 @@ description: this is the blog post of all time
 featured: false
 draft: true
 tags:
+  - test
 ---
 Whats up guys
 
