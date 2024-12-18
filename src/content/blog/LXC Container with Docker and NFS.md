@@ -3,7 +3,7 @@ author: Sean
 pubDatetime: 2024-12-16T22:32:00Z
 slug: lxc-docker-nfs-proxmox
 title: Setting up an LXC Container with Docker and NFS on Proxmox
-description: Info on how to set up a Proxmox LXC container with NFS and Docker ready to go
+description: Instructions on how to set up a Proxmox LXC container with NFS and Docker ready to go
 featured: true
 draft: false
 tags:
@@ -15,12 +15,13 @@ tags:
   - vms
 ---
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
+I recently switched to using almost all Proxmox LXC containers with docker and NFS for all my homelab services. These are the steps I follow to set one up.
 # Set up LXC container with Docker
-1. Create LXC container with helper scripts.
+1.  Create LXC container with [helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=docker).
 ```bash
 bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/ct/docker.sh)"
 ```
->See script page: https://community-scripts.github.io/ProxmoxVE/scripts?id=docker
+> I just use all the default settings. No Portainer, no docker-compose, nothing...
 2. Make new user "sean"
 ```bash
 adduser sean
@@ -39,7 +40,7 @@ ln -s /home/sean/docker /docker
 6. In Proxmox, set static IP and DNS
 # Setting up NFS
 
-> In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
+In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
 
 1. Shut down the container if running
 2. Backup container
