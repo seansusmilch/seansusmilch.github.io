@@ -1,4 +1,5 @@
 import type { Site, SocialObjects } from "./types";
+import type { GiscusProps } from "@giscus/react";
 
 export const SITE: Site = {
   website: "https://seansus.vercel.app/", // replace this with your deployed domain
@@ -13,6 +14,19 @@ export const SITE: Site = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: true,
   editPost: undefined,
+};
+
+export const GISCUS: GiscusProps = {
+  repo: "seansusmilch/astro-blog",
+  repoId: "R_kgDOM6OIrA",
+  category: "Post Comments",
+  categoryId: "DIC_kwDOM6OIrM4ClqDn",
+  mapping: "pathname",
+  reactionsEnabled: "1",
+  emitMetadata: "0",
+  inputPosition: "bottom",
+  lang: "en",
+  loading: "lazy",
 };
 
 export const LOCALE = {
