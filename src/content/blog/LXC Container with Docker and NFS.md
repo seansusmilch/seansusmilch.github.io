@@ -17,7 +17,7 @@ tags:
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
 I recently switched to using almost all Proxmox LXC containers with docker and NFS for all my homelab services. These are the steps I follow to set one up.
 # Set up LXC container with Docker
-1.  Create LXC container with [helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=docker).
+1.  Create LXC container with this [helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=docker).
 ```bash
 bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/ct/docker.sh)"
 ```
@@ -38,6 +38,11 @@ ln -s /home/sean/docker /docker
 ```
 5. Add ssh key to `~/.ssh/authorized_keys`
 6. In Proxmox, set static IP and DNS
+7. Ensure docker is able to pull images by running the following
+```bash
+docker run hello-world
+docker image rm -f hello-world
+```
 # Setting up NFS
 
 In order to use NFS inside LXC, you need to have a privileged container. Follow these steps to convert your container to privileged in Proxmox.
