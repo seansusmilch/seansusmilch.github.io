@@ -2,7 +2,7 @@ import type { Site, SocialObjects } from "./types";
 import type { GiscusProps } from "@giscus/react";
 
 export const SITE: Site = {
-  website: "https://seansus.vercel.app/", // replace this with your deployed domain
+  website: "https://seansusmilch@github.io", // replace this with your deployed domain
   author: "Sean",
   profile: "https://github.com/seansusmilch/",
   desc: "I'm a software dev who likes to do side projects! I write about web dev, finance, homelab stuff, and more.",
@@ -17,7 +17,7 @@ export const SITE: Site = {
 };
 
 export const GISCUS: GiscusProps = {
-  repo: "seansusmilch/astro-blog",
+  repo: "seansusmilch/seansusmilch.github.io",
   repoId: "R_kgDOM6OIrA",
   category: "Post Comments",
   categoryId: "DIC_kwDOM6OIrM4ClqDn",
