@@ -2,15 +2,19 @@
 author: Sean
 pubDatetime: 2025-02-17T22:48:00Z
 slug: removing-closed-captions-from-m3u8-streams
-title: Removing Closed Captions from M3U8 Streams w/ FFMPEG
-description: How to remove closed captions from m3u8 streams using FFMPEG. Also describes how to use this option in Threadfin
+title: Removing Closed Captions from M3U8 Streams w/ FFmpeg
+description: Using Threadfin and FFmpeg to remove pesky/useless captions in live broadcasts
 featured: true
 draft: false
 tags:
   - linux
+  - media-server
+  - live-stream
+  - ffmpeg
+  - threadfin
 ---
-![Pasted image 20250217231214.png](@assets/blog/Pasted%20image%2020250217231214.png)
-I recently ran into some m3u8 live streams that had captions (not subtitles) embedded in the stream. They were pretty much useless, missing every other word and not even in sync. I decided to filter out the captions stream...but how do??
+![sports-broadcast-captions.png](@assets/blog/sports-broadcast-captions.png)
+I recently ran into some m3u8 live streams that had captions embedded in the stream. They were pretty much useless, missing every other word and not even in sync. I decided to filter out the captions stream...but how do??
 
 For context, I'm using [Threadfin](https://github.com/Threadfin/Threadfin) to proxy my streams to Emby and Jellyfin. A lot of fine tuning had to be done to get where I'm at, but it's finally working well!
 
