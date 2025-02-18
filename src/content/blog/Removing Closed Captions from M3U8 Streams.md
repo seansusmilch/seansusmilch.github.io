@@ -5,10 +5,9 @@ slug: removing-closed-captions-from-m3u8-streams
 title: Removing Closed Captions from M3U8 Streams w/ FFMPEG
 description: How to remove closed captions from m3u8 streams using FFMPEG. Also describes how to use this option in Threadfin
 featured: true
-draft: true
+draft: false
 tags:
   - linux
-ogImage:
 ---
 ![Pasted image 20250217231214.png](@assets/blog/Pasted%20image%2020250217231214.png)
 I recently ran into some m3u8 live streams that had captions (not subtitles) embedded in the stream. They were pretty much useless, missing every other word and not even in sync. I decided to filter out the captions stream...but how do??
