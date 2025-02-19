@@ -1,36 +1,46 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About Me"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+## My Skills
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+* **Technical Skills:**
+  * Comfortable building & troubleshooting computers
+  * Comfortable in Google Workspace, Office 365
+  * Experienced in UNIX, UNIX shell
+  * Experienced with Docker, NodeJS, Firebase, AWS, GitHub
+  * Comfortable with HTML, CSS, Python, TypeScript/Javascript, Java
+* **Soft Skills:**
+  * Good at problem-solving
+  * Good at time management
+  * Good at verbal and written communication
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+## Experience
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+### Maverick Software Consulting, Minneapolis, MN
 
-## Tech Stack
+DevOps Engineering Intern (May 2021 - June 2023)
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+* Interned at Thomson Reuters
+* Agile Development via Azure DevOps
+* Managing and deploying services in AWS using CodePipeline and CloudFormation
+* Bash scripting to automate startup configuration on legacy servers
+* Python scripting to gather detailed info on resources across many AWS accounts which greatly increased compliance
 
-## Features
+### Thomson Reuters, Eagan, MN
 
-Here are certain features of this site.
+Frontend Developer (July 2023 - Present)
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
+* Modernizing JavaScript modules and React components across multiple products
+* Upgrading dependencies in various Python modules used in AWS Lambda
+* Resolving bugs and communicating with various teams on getting fixes deployed to respective environments
+* Developing tools and leveraging AI to speed up development
+* Reviewing code from colleagues
 
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+## Contact Me
+
+Don't forget to mention that you found me through my blog!
+
+* Email: seantsusmilch@gmail.com
+* LinkedIn: [seansusmilch](https://www.linkedin.com/in/seansusmilch/)
