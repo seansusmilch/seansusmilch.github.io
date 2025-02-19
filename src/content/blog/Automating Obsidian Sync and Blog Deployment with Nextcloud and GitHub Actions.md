@@ -12,7 +12,7 @@ tags:
 ---
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, and a **GitHub Action** that runs a **Python script** that automates the process.
 
-# Table of contents
+## Table of contents
 
 ## Inspiration
 
