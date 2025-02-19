@@ -1,8 +1,8 @@
 ---
 author: Sean
 pubDatetime: 2024-12-16T14:57:00Z
-slug: the-blog
-title: The Blog 🔥
+slug: test-post
+title: Test Post
 description: This is the blog post of all time
 featured: false
 draft: false
