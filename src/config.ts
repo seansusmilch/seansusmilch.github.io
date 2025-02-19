@@ -6,7 +6,7 @@ export const SITE: Site = {
   author: "Sean",
   profile: "https://github.com/seansusmilch/",
   desc: "I'm a software dev who likes to do side projects! I write about web dev, finance, homelab stuff, and more.",
-  title: "Sean S",
+  title: "Sean Susmilch",
   // ogImage: "bball-daytrading.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
