@@ -10,8 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
-      actions: write
+      write-all
+      # contents: write
+      # actions: write
 
     env:
       WEBDAV_URL: ${{ secrets.WEBDAV_URL }}
