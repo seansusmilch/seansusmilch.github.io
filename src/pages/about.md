@@ -1,7 +1,13 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About Me"
+title: "I'm Sean Susmilch"
 ---
+
+### A DevOps & Frontend Developer
+
+Experienced DevOps and Frontend Developer skilled in AWS, React, TypeScript, Python, and Docker, with a strong focus on modernizing applications, automating workflows, and streamlining development and deployment.
+
+[Contact me!](#contact-me)
 
 ## My Skills
 
@@ -43,14 +49,14 @@ title: "About Me"
 #### Frontend Developer (July 2023 - Present)
 
 * Modernizing JavaScript modules and React components across multiple products
-* Upgrading dependencies in various Python modules used in AWS Lambda
-* Resolving bugs and communicating with various teams on getting fixes deployed to respective environments
+* Upgrading dependencies and refactoring in various Python modules used in AWS Lambda
+* Resolving bugs and communicating with various teams on getting fixes deployed to relevant environments
 * Developing tools and leveraging AI to speed up development
 * Reviewing code from colleagues
 
 ## Contact Me
 
-Don't forget to mention that you found me through my blog!
+Mention that you've found my blog!
 
 * Email: seantsusmilch@gmail.com
 * LinkedIn: [seansusmilch](https://www.linkedin.com/in/seansusmilch/)
