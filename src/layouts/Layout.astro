@@ -58,7 +58,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.png" id="favicon" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -130,3 +130,24 @@ const structuredData = {
     <slot />
   </body>
 </html>
+
+
+<script is:inline>
+  // Get favicon element
+  const favicon = document.getElementById('favicon');
+  
+  // Function to update favicon
+  function updateFavicon() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      favicon.href = '/favicon-light.png';
+    } else {
+      favicon.href = '/favicon-dark.png';
+    }
+  }
+  
+  // Update favicon initially
+  updateFavicon();
+  
+  // Listen for theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+</script>
