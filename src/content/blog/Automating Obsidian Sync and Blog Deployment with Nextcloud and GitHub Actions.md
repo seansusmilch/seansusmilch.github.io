@@ -9,6 +9,7 @@ draft: false
 tags:
   - automation
   - python
+  - homelab
 ---
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, and a **GitHub Action** that runs a **Python script** that automates the process.
 
@@ -23,6 +24,7 @@ Instead of just pulling blog posts from Obsidian, I wanted my **entire note-taki
 
 ### 1. Syncing Obsidian Notes with Nextcloud
 To keep my Obsidian notes synced across devices, I used the [Remotely Save](https://github.com/remotely-save/remotely-save) plugin. This plugin allows Obsidian to sync files via various backends, including **WebDAV**, which I used to connect to my **Nextcloud** instance.
+> Originally, I wanted to sync my notes to GitHub. However, that proved to be a messy pain in the ass. So I decided to switch to my already existing Nextcloud instance.
 #### Steps to Set Up Remotely Save with Nextcloud
 1. Install the **Remotely Save** plugin in Obsidian.  
 2. Configure it to use **WebDAV** as the sync method.  
@@ -35,7 +37,7 @@ With this setup, my notes are always up-to-date across devices without needing t
 
 Since my blog posts are stored as Markdown files in my Obsidian vault, I wanted a way to **automatically update my blog** whenever I made changes to my notes. Here’s how I accomplished that:  
 
-- A **GitHub Action** runs a Python script to:  
+- A **GitHub Action** runs a Python script to:
   1. **Fetch** posts from my Nextcloud WebDAV folder (where my Obsidian notes are stored). 
   2. **Clone** those posts into a GitHub repository.  
   3. **Push** the updated posts to the repository.  
