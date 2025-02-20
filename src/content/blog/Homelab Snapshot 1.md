@@ -14,4 +14,5 @@ tags:
   - proxmox
   - nfs
   - media-server
+  - homelab
 ---

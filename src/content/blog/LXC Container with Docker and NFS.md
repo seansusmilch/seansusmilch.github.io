@@ -13,6 +13,7 @@ tags:
   - nfs
   - linux
   - vms
+  - homelab
 ---
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
 I recently switched to using almost all Proxmox LXC containers with docker and NFS for all my homelab services. These are the steps I follow to set one up.
