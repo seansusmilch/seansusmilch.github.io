@@ -5,14 +5,14 @@ slug: creating-a-reverse-split-arbitrage-newsletter
 title: Creating a Reverse Split Arbitrage Newsletter
 description: How I created a newsletter that scrapes for profitable reverse split opportunities using python.
 featured: true
-draft: true
+draft: false
 tags:
-- python
-- stocks
-- investing
-- ai
-- llm
-- web-scraping
+  - python
+  - stocks
+  - investing
+  - ai
+  - llm
+  - web-scraping
 ---
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
@@ -49,7 +49,6 @@ Unless???
 # Value Added
 
 I created this newsletter with the goal of making it dead simple to know when companies are performing reverse splits, and if they're rounding up fractional shares. I've put some time into getting accurate split calendars, full press release articles, and even an AI generated summary that will let you know whether the press release mentions rounding up fractional shares! This achieves my goal in reducing friction of executing this strategy by a decent amount. However, there are still many things that could be improved.
-
 # The Architecture
 
 Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. The whole project can be separated into 4 main components.
