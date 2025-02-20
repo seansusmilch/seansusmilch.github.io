@@ -25,7 +25,7 @@ To keep my Obsidian notes synced across devices, I used the [Remotely Save](http
 1. Install the **Remotely Save** plugin in Obsidian.
 2. Configure it to use **WebDAV** as the sync method.
 3. Enter the WebDAV URL of my Nextcloud instance.
-4. Provide authentication credentials.  
+4. Provide authentication credentials.
 5. Enable automatic syncing so that any changes in my Obsidian vault are pushed to Nextcloud.
 With this setup, my notes are always up-to-date across devices without needing to rely on third-party cloud services like iCloud or Google Drive.  
 ### 2. Automating Blog Updates with GitHub Actions
