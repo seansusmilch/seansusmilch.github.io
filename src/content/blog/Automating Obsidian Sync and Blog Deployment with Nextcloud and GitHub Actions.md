@@ -46,6 +46,8 @@ Since my blog posts are stored as Markdown files in my Obsidian vault, I wanted 
   3. **Push** the updated posts to the repository.
   4. **Trigger** another workflow to deploy to **GitHub Pages**
 
+These components should make up the Obsidian to blog pipeline!
+![obsidian-to-blog-pipeline.png](@assets/blog/obsidian-to-blog-pipeline.png)
 #### See the specifics of this in my blog's GitHub repo!
 
 [seansusmilch/seansusmilch.github.io](https://github.com/seansusmilch/seansusmilch.github.io)
