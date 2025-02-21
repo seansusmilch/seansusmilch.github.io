@@ -18,7 +18,6 @@ tags:
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
 >Disclaimer: Please remember that any investment involves risk, and that this newsletter is not to be used as financial advice. Do your own research before coming to any sort of financial decisions.
-
 ## Table of contents
 
 ## Inspiration
@@ -50,13 +49,7 @@ Unless???
 
 ## Value Added
 
-My goal? **Make it dead simple** to find upcoming reverse splits and confirm if fractional shares are rounded up. I built this newsletter to:
-
-- Provide accurate split calendars
-- Gather full press release articles
-- Generate **AI-powered summaries** highlighting whether rounding up is mentioned
-
-With this setup, executing the strategy becomes way smoother. That said, there’s still plenty of room for improvement.
+I created this newsletter with the goal of making it dead simple to know when companies are performing reverse splits, and if they're rounding up fractional shares. I've put some time into getting accurate split calendars, full press release articles, and even an AI generated summary that will let you know whether the press release mentions rounding up fractional shares! This achieves my goal in reducing friction of executing this strategy by a decent amount. However, there are still many things that could be improved.
 ## The Architecture
 
 Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. The whole project can be separated into 4 main components.
@@ -95,7 +88,7 @@ I chose Python cause it's familiar to me, and fast (to write!!!) I suppose this 
 * Summarize press releases
 * Generate newsletter html and send with Brevo
 
-## Challenges
+## Limitations/Challenges
 
 This project faced a multitude of challenges. One of the biggest, was definitely finding a calendar that laid out upcoming reverse splits in an easily scrapable way. Many calendars were behind authentication, or other odd blockers that made it a pain to scrape. 
 
