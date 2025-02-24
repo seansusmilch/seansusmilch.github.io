@@ -14,6 +14,7 @@ tags:
   - llm
   - web-scraping
   - project
+  - pocketbase
 ---
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
