@@ -18,7 +18,7 @@ I recently ran into some m3u8 live streams that had captions embedded in the str
 
 For context, I'm using [Threadfin](https://github.com/Threadfin/Threadfin) to proxy my streams to Emby and Jellyfin. A lot of fine tuning had to be done to get where I'm at, but it's finally working well!
 
-# Removing the Captions
+## Removing the Captions
 Threadfin, is the place where FFMPEG gets to remove the captions. The key is adding this option to your FFmpeg options.
 
 ```
@@ -27,7 +27,7 @@ Threadfin, is the place where FFMPEG gets to remove the captions. The key is add
 
 An FFmpeg wiki post [here](https://trac.ffmpeg.org/wiki/HowToExtractAndRemoveClosedCaptions)  showcases this option. This was a struggle for me to find since it's often assumed that subtitles or captions are in separate streams in the media container. However, for live broadcasts, they're actually inside the video stream.
 
-# Threadfin FFmpeg Options
+## Threadfin FFmpeg Options
 
 This is the FFmpeg options that I've landed on that work fairly well. I've formatted it nicely just for this post 😎
 
