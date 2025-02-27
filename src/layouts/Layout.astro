@@ -2,7 +2,6 @@
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
-import Posthog from "@components/posthog.astro";
 
 export interface Props {
   title?: string;
@@ -124,9 +123,9 @@ const structuredData = {
     <meta name="google-site-verification" content="LpX6QV4oKaTl2WB2k08NYA5JCEB1TiBl3ZuVxWMicAw" />
 
     <ViewTransitions />
-    <Posthog />
 
     <script is:inline src="/toggle-theme.js" async></script>
+    <script defer src="https://umiumi.duckdns.org/script.js" data-website-id="01b386e9-8e37-4dcb-b427-765c1cb3d022"></script>
   </head>
   <body>
     <slot />
