@@ -5,7 +5,7 @@ export const SITE: Site = {
   website: "https://seansusmilch.github.io", // replace this with your deployed domain
   author: "Sean",
   profile: "https://github.com/seansusmilch/",
-  desc: "Writing about web dev, finance, and homelabs—one side project at a time.",
+  desc: "I mainly write about software development and homelab projects, but if a topic interests me enough, it might make it on here!",
   title: "Sean Susmilch",
   ogImage: undefined,
   lightAndDarkMode: true,
