@@ -24,6 +24,14 @@ Just a test page
 > [!WARNING] Warning!!!
 > Looks like callouts like this dont work on the blog :(
 
+> Title
+> Contents
+
+
+> [!NOTE] Note
+> Contents
+
+
 ## Horizontal Rules
 
 ___
