@@ -4,7 +4,7 @@ pubDatetime: 2025-02-17T22:48:00Z
 slug: removing-closed-captions-from-m3u8-streams
 title: Removing Closed Captions from M3U8 Streams w/ FFmpeg
 description: Using Threadfin and FFmpeg to remove subpar captions in live broadcasts
-featured: true
+featured: false
 draft: false
 tags:
   - linux

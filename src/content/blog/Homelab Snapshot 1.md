@@ -90,13 +90,13 @@ In addition to my home setup, I also have a **free-tier ARM server in Oracle Clo
  
 The key is [Docker Compose](https://docs.docker.com/compose/). Over the years, I've found a deployment "format" that I like to keep all of my services in, and I've laid it out in a list of rules.
 
-1.Services are deployed using docker
+1. Services are deployed using docker
 	- No crazy long "Getting started" docs required
 	- Write your own `Dockerfile` if you have to
-- All persistent data must be stored under `/docker/<service>/*`
+2. All persistent data must be stored under `/docker/<service>/*`
 	- Read-only data outside of this folder is fine (e.g. `/etc/localtime:ro`)
 	- If data is needed outside of this folder, use symbolic links
-- Every service must have a `compose.yml` that includes EVERYTHING that is needed to deploy
+3. Every service must have a `compose.yml` that includes EVERYTHING that is needed to deploy
 	- There should be no references outside of the `/docker/<service>` folder. (Use symbolic links if needed!)
 
 With these rules applied, whenever I need to redeploy a service, all I have to do is `cd` into the service folder, and run `docker compose up -d`, and I can go about my business.
