@@ -52,6 +52,7 @@ These components should make up the Obsidian to blog pipeline!
 #### See the specifics of this in my blog's GitHub repo!
 
 [seansusmilch/seansusmilch.github.io](https://github.com/seansusmilch/seansusmilch.github.io)
+
 I have a GitHub workflow called [Sync Posts](https://github.com/seansusmilch/seansusmilch.github.io/actions/workflows/sync-posts.yaml) that does the following:
 
 - This sets up an `rclone` remote to my WebDAV endpoint
