@@ -35,6 +35,7 @@ To keep my Obsidian notes synced across devices, I used the [Remotely Save](http
 3. Enter the WebDAV URL of my Nextcloud instance.
 4. Provide authentication credentials.
 5. Enable automatic syncing so that any changes in my Obsidian vault are pushed to Nextcloud.
+
 With this setup, my notes are always up-to-date across devices without needing to rely on third-party cloud services like iCloud or Google Drive.
 
 ### 2. Automating Blog Updates with GitHub Actions
@@ -51,11 +52,12 @@ These components should make up the Obsidian to blog pipeline!
 #### See the specifics of this in my blog's GitHub repo!
 
 [seansusmilch/seansusmilch.github.io](https://github.com/seansusmilch/seansusmilch.github.io)
-I have a GitHub workflow called *Sync Posts* that does the following:
+I have a GitHub workflow called [Sync Posts](https://github.com/seansusmilch/seansusmilch.github.io/actions/workflows/sync-posts.yaml) that does the following:
 
 - This sets up an `rclone` remote to my WebDAV endpoint
-- Then runs a Python script that will sync posts to the repo
-- Then triggers the *Deploy to GitHub Pages* workflow
+- Then runs a Python script [scripts/sync-posts.py](https://github.com/seansusmilch/seansusmilch.github.io/blob/main/scripts/sync-posts.py) that will sync posts to the repo
+- Then triggers the [Deploy to GitHub Pages](https://github.com/seansusmilch/seansusmilch.github.io/actions/workflows/deploy-gh-pages.yaml) workflow
+- The blog template I used is [Astro Paper](https://github.com/satnaing/astro-paper)
 
 ## The Result
 
