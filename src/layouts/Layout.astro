@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
 
-const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
 
 export interface Props {
   title?: string;
@@ -115,7 +115,7 @@ const structuredData = {
 
     <meta name="theme-color" content="" />
 
-    <meta name="google-site-verification" content="LpX6QV4oKaTl2WB2k08NYA5JCEB1TiBl3ZuVxWMicAw" />
+    <meta name="google-site-verification" content={googleSiteVerification} />
 
     <ClientRouter />
 
