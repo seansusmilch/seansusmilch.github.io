@@ -6,7 +6,9 @@ export const SITE = {
   profile: "https://github.com/seansusmilch/",
   desc: "I mainly write about software development and homelab projects, but if a topic interests me enough, it might make it on here!",
   title: "Sean Susmilch",
+  timezone: "America/Chicago",
   ogImage: undefined,
+  dynamicOgImage: true,
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
@@ -15,7 +17,10 @@ export const SITE = {
   showBackButton: true,
   editPost: {
     enabled: false,
+    url: "",
+    text: "",
   },
+  lang: "en",
 };
 
 export const GISCUS: GiscusProps = {
