@@ -4,7 +4,7 @@ pubDatetime: 2024-10-02T05:35:45.644Z
 slug: creating-a-reverse-split-arbitrage-newsletter
 title: Creating a Reverse Split Arbitrage Newsletter
 description: How I created a newsletter that scrapes for profitable reverse split opportunities using python.
-featured: false
+featured: true
 draft: false
 tags:
   - python
@@ -19,6 +19,17 @@ tags:
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
 >Disclaimer: Please remember that any investment involves risk, and that this newsletter is not to be used as financial advice. Do your own research before coming to any sort of financial decisions.
+
+## Update June 2025!!!
+Lately, my reverse splits have not been going through on Robinhood. They've been getting sold instead of rounded up despite the announcements saying they would do so. I have not investigated this too much. 
+
+However Kenny Peng, the one behind revRSS, detailed in a post [here](https://www.revrss.com/2025/05/04/manipulation_investigations_2.html) and [here](https://www.revrss.com/2024/11/02/manipulation_investigations.html) his research into the matter. His posts detail a company's litigations based on accusations of stock manipulation due to the sharp rise in shareholders shortly before their split. I won't go into detail in this update, so I highly suggest reading Kenny's posts if you're interested. Personally, I do not believe this is stock manipulation as people are just reacting to publicly available news... but I'm not very informed on the matter.
+
+Either way, as Kenny said in his post, this has become a legal grey area and I don't want to be caught up in it. Especially if Robinhood (or someone else along the chain) no longer delivers on rounded splits.
+
+**Due to these developments, I have stopped this service on June 5th, 2025**
+
+
 ## Table of contents
 
 ## Inspiration
@@ -27,7 +38,7 @@ Yes, I'm in that hustle mindset. I really enjoy stocks and other sorts of invest
 
 ### First Exposure to Reverse Splits
 
-I first came across the reverse split arbitrage strategy in a friend-of-mine's discord server. No, not one of those scammy one's, it was a server for the friend group. Basically, one of my friend's friends would just post in a dedicated channel that "this stock is doing a reverse split! Buy 1 share before this date!".
+I first came across the reverse split arbitrage strategy in a friend's Discord server. No, not one of those scammy one's; it was a server for the friend group. Basically, one of my friend's friends would just post in a dedicated channel that "this stock is doing a reverse split! Buy 1 share before this date!".
 
 At first I didn't think much of it. What's a "reverse split"? What the hell are they talking about?
 
@@ -53,7 +64,7 @@ Unless???
 I created this newsletter with the goal of making it dead simple to know when companies are performing reverse splits, and if they're rounding up fractional shares. I've put some time into getting accurate split calendars, full press release articles, and even an AI generated summary that will let you know whether the press release mentions rounding up fractional shares! This achieves my goal in reducing friction of executing this strategy by a decent amount. However, there are still many things that could be improved.
 ## The Architecture
 
-Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. The whole project can be separated into 4 main components.
+Here's a rundown of the architecture and design choices I made when creating this project. The architecture of this project is fairly simple in the sense that a good portion of it is abstracted away for me. I separated the project into 4 main components.
 ![reverse-splitter-stack.png](@assets/blog/reverse-splitter-stack.png)
 *The tech stack*
 
@@ -66,7 +77,7 @@ With a newsletter, and email in general, there are many factors that can impact 
 
 ### Database (Pocketbase)
 
-I want to focus on other parts of the project, not learning a new database. For that reason, I chose Pocketbase as my database. It's just so nice in terms of a decent feature set and API docs. Even though there's no official library for Python, there are good unofficial libraries that do everything I need. The database will handle the following:
+I want to focus on other parts of the project, not learning a new database. For that reason, I chose Pocketbase as my database. It's just so nice in terms of a decent feature set and API docs. While there's no official library for Python, there are good unofficial libraries that do everything I need. The database will handle the following:
 
 * New email subscriptions (not yet in Brevo)
 * Upcoming reverse splits
@@ -81,7 +92,7 @@ This is pretty much just a simple form that will collect a user's name and email
 
 ### Backend (Python)
 
-I chose Python cause it's familiar to me, and fast (to write!!!) I suppose this can be further split up... but the main jobs of the backend is as follows:
+I chose Python because it's familiar to me and fast (to write!!!) I suppose this can be further split up... but the main jobs of the backend is as follows:
 
 * Add new subscribers to Brevo
 * Scrape for upcoming reverse splits
@@ -94,3 +105,5 @@ I chose Python cause it's familiar to me, and fast (to write!!!) I suppose this 
 This project faced a multitude of challenges. One of the biggest, was definitely finding a calendar that laid out upcoming reverse splits in an easily scrapable way. Many calendars were behind authentication, or other odd blockers that made it a pain to scrape. 
 
 The accuracy of such calendars was also something I questioned a bit. It always felt like I was missing out on opportunities
+
+Interested in checking out the code? Find it [here](https://seansusmilch.github.io/posts/creating-a-reverse-split-arbitrage-newsletter/) on my GitHub!

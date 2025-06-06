@@ -4,7 +4,7 @@ pubDatetime: 2025-02-18T23:44:00Z
 slug: obsidian-sync-and-blog
 title: Automating Obsidian Sync and Blog Deployment with Nextcloud and GitHub Actions
 description: How I’m able to write my blog posts in Obsidian and have them automatically show up here!
-featured: true
+featured: false
 draft: false
 tags:
   - automation

@@ -4,7 +4,7 @@ pubDatetime: 2024-12-16T22:32:00Z
 slug: lxc-docker-nfs-proxmox
 title: Setting up an LXC Container with Docker and NFS on Proxmox
 description: Instructions on how to set up a Proxmox LXC container with NFS and Docker ready to go
-featured: true
+featured: false
 draft: false
 tags:
   - docker
