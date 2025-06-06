@@ -14,9 +14,10 @@ tags:
   - linux
   - vms
   - homelab
+  - guide
 ---
 ![futuristic-container.png](@assets/blog/futuristic-container.png)
-I recently switched to using almost all Proxmox LXC containers with docker and NFS for all my homelab services. These are the steps I follow to set one up.
+I recently switched to using almost exclusively Proxmox LXC containers with docker and NFS for my homelab services. These are the steps I follow to set one up.
 
 ## Table of contents
 ## Set up LXC container with Docker
@@ -41,7 +42,7 @@ ln -s /home/sean/docker /docker
 ```
 5. Add ssh key to `~/.ssh/authorized_keys`
 6. In Proxmox, set static IP and DNS
-7. Ensure docker is able to pull images by running the following
+7. Ensure docker is able to pull and run images by running the following
 ```bash
 docker run hello-world
 docker image rm -f hello-world

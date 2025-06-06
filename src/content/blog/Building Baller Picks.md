@@ -10,6 +10,8 @@ tags:
   - astro
   - docker
   - pocketbase
+  - nba
+  - typescript
 ---
 ![baller-picks-banner.png](@assets/blog/baller-picks-banner.png)
 
@@ -133,4 +135,4 @@ The project showcases how thoughtful technology choices can lead to applications
 
 ---
 
-_For those interested in exploring the implementation further, the project's codebase demonstrates advanced patterns in Astro, TypeScript integration, and real-time data management._
+_For those interested in exploring the implementation further, the project's codebase demonstrates advanced patterns in Astro, TypeScript integration, and real-time data management. Check it out on my GitHub [here](https://github.com/seansusmilch/w-picks-astro)_
