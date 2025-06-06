@@ -9,7 +9,7 @@ source_base_dir = os.getenv('SOURCE_ATTACHMENTS', '/Obsidian')
 
 dest_posts = os.getenv('DEST_POSTS', 'src/content/blog')
 dest_attachments = os.getenv('DEST_ATTACHMENTS', 'src/assets/blog')
-attachment_prefix = '@assets/blog'
+attachment_prefix = '@/assets/blog'
 
 def sync_markdown(cloud:Path, local:Path):
     # rclone sync "nc:${SOURCE_POSTS}" "${DEST_POSTS}"
