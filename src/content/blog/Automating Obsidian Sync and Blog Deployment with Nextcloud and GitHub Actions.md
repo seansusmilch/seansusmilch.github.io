@@ -56,7 +56,9 @@ These components should make up the Obsidian to blog pipeline!
 I have a GitHub workflow called [Sync Posts](https://github.com/seansusmilch/seansusmilch.github.io/actions/workflows/sync-posts.yaml) that does the following:
 
 - This sets up an `rclone` remote to my WebDAV endpoint
+	- Endpoint and auth set through GitHub environment variables
 - Then runs a Python script [scripts/sync-posts.py](https://github.com/seansusmilch/seansusmilch.github.io/blob/main/scripts/sync-posts.py) that will sync posts to the repo
+	- The path in my Obsidian vault is set through a GitHub environment variable
 - Then triggers the [Deploy to GitHub Pages](https://github.com/seansusmilch/seansusmilch.github.io/actions/workflows/deploy-gh-pages.yaml) workflow
 - The blog template I used is [Astro Paper](https://github.com/satnaing/astro-paper)
 
@@ -69,3 +71,13 @@ With this setup:
  - [x] **No manual intervention** is needed to deploy new posts.
 
 This workflow saves me time and ensures that my Obsidian notes are a “source of truth” so to speak.
+
+### What can be better?
+
+This setup does have at least one flaw in my opinion. That is, once you have all this set up you can't move your blog posts around or rename folders in your Obsidian vault. If you do so, you'd have to update the environment variables in your GitHub repo 👎
+
+That's why when I come back to this, I'm going to try out an idea to resolve this problem.
+Instead of specifying a path, we could specify a special filename (ex. `!BLOG_POSTS!`) which `sync-posts.py` could then search for within your vault in order to find all your blog posts! 👍
+
+---
+_If you'd like to see the specifics, feel free to look at the code on my GitHub repo [here](https://github.com/seansusmilch/seansusmilch.github.io)_
