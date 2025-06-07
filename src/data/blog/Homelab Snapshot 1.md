@@ -31,7 +31,7 @@ Currently, my home lab consists of three physical servers, each serving differen
 ### 1. Storage Server - The Vault
 
 ![homelab-vault.png](@/assets/blog/homelab-vault.png)
-
+![vault-neofetch-specs.png](@/assets/blog/vault-neofetch-specs.png)
 The backbone of my home lab is an old Quanta server from around 2012. This machine can hold up to 12 hard drives, and right now, it's nearly maxed out—I have 10 drives installed. This server handles all storage for my home lab, with around **40-50TB of usable space**.
 
 - **Base OS:** Proxmox
@@ -44,7 +44,7 @@ The backbone of my home lab is an old Quanta server from around 2012. This machi
 ### 2. The Media Server - Gaming PC Guts
 
 ![homelab-stu.png](@/assets/blog/homelab-stu.png)
-
+![stu-neofetch-specs.png](@/assets/blog/stu-neofetch-specs.png)
 This server is built from leftover parts from my previous gaming PCs. Whenever I upgrade my main rig, I repurpose the old parts into my home lab. This machine includes a **GTX 1060 GPU**, which is still capable of handling video transcoding, so I’m keeping it as-is.
 
 - **Base OS:** Proxmox
@@ -57,7 +57,7 @@ This server is built from leftover parts from my previous gaming PCs. Whenever I
 ### 3. The Utility Server - New Guy
 
 ![homelab-new-guy.png](@/assets/blog/homelab-new-guy.png)
-
+![ekko-neofetch-specs.png](@/assets/blog/ekko-neofetch-specs.png)
 This is my most recent build, also made from spare gaming PC parts. I initially wanted to include a GPU, but the case didn't allow for it, so I left it out. This server runs several lightweight but essential services, all containerized within LXC environments.
 
 - **Base OS:** Proxmox
