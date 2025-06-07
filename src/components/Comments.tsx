@@ -1,5 +1,5 @@
 import Giscus, { type Theme } from "@giscus/react";
-import { GISCUS } from "@config";
+import { GISCUS } from "@/config";
 import { useEffect, useState } from "react";
 
 interface CommentsProps {
