@@ -25,7 +25,7 @@ I built this project with a simple goal in mind: to create a fun way for my frie
 
 The result is **Baller Picks**, a sophisticated prediction platform that combines the modern web development ecosystem with real-time sports data. In this post, I'll explore the architecture, technology choices, and implementation details that brought the project to life.
 
-Baller Picks is a comprehensive platform that allows NBA fans to:
+Baller Picks is a comprehensive platform that allows NBA fans (my friends and I) to:
 
 - Predict game outcomes with detailed reasoning and commentary.
 - Track performance through statistics and leaderboards.
@@ -50,8 +50,8 @@ Choosing the right technology is critical for any project's success. My goal was
 
 **Backend & Database**
 
-- **PocketBase:** An efficient "backend-in-a-box" solution. It handles the database (SQLite), user authentication, and API, which allowed me to focus on the application's core features.
-- **Astro Server:** Leveraged for server-side rendering (SSR) and creating API routes within the Astro project itself.
+- **PocketBase:** An efficient and easy to use backend solution. It handles the database (SQLite), user authentication, and API, which allowed me to focus on the application's core features.
+- **Astro Server:** Leveraged for server-side rendering (SSR) and creating API routes within the Astro project itself. This server also handles cron jobs to process picks and scoreboard data.
 
 **Development & Tooling**
 

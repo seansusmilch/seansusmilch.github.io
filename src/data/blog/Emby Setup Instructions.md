@@ -3,7 +3,7 @@ author: Sean
 pubDatetime: 2025-06-06T01:02:00Z
 slug: emby-setup-instructions
 title: How To Set Up Emby
-description: A guide for a new user setting up Emby for the first time
+description: A guide for a new end user setting up Emby for the first time
 featured: false
 draft: false
 tags:
