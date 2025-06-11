@@ -17,7 +17,7 @@ tags:
 
 > _An in-depth look at the process and technology behind creating a full-stack NBA pick'em Progressive Web App._
 
-## Table of contents
+## Table of Contents
 
 ## Introduction
 
@@ -93,6 +93,7 @@ This approach ensures that data conforms to the expected structure throughout th
 
 ![baller-picks-db-schema.png](@/assets/blog/baller-picks-db-schema.png)
 _Entity Relationship Diagram_
+
 ## Key Feature Implementation
 
 Here is a look at how some of the application's primary features were built.
@@ -118,6 +119,7 @@ A key feature is the ability for users to track their prediction performance. I 
 
 ![baller-picks-user-stats.png](@/assets/blog/baller-picks-user-stats.png)
 _user stats on profile page_
+
 ## Key Takeaways
 
 This project was a valuable learning experience. These were some of my most important takeaways:

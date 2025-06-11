@@ -13,7 +13,8 @@ tags:
   - project
 ---
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, a **GitHub Action** that runs a **Python script** that syncs posts to the repository, and another action to **deploy to GitHub Pages**.
-## Table of contents
+
+## Table of Contents
 
 ## Inspiration
 
@@ -26,6 +27,7 @@ Instead of just pulling blog posts from Obsidian, I wanted my **entire note-taki
 ### 1. Syncing Obsidian Notes with Nextcloud
 
 To keep my Obsidian notes synced across devices, I used the [Remotely Save](https://github.com/remotely-save/remotely-save) plugin. This plugin allows Obsidian to sync files via various backends, including **WebDAV**, which I used to connect to my **Nextcloud** instance.
+
 > Originally, I wanted to sync my notes to GitHub. However, that proved to be a messy pain in the ass. So I decided to switch to my already existing Nextcloud instance.
 
 #### Steps to Set Up Remotely Save with Nextcloud
@@ -42,14 +44,15 @@ With this setup, my notes are always up-to-date across devices without needing t
 
 Since my blog posts are stored as Markdown files in my Obsidian vault, I wanted a way to **automatically update my blog** whenever I made changes to my notes. What I ended up going with was a **GitHub Action** that runs a Python script to:
 
-  1. **Fetch** posts from my Nextcloud WebDAV folder (where my Obsidian notes are stored). 
-  2. **Clone** those posts into a GitHub repository.  
+  1. **Fetch** posts from my Nextcloud WebDAV folder (where my Obsidian notes are stored).
+  2. **Clone** those posts into a GitHub repository.
   3. **Push** the updated posts to the repository.
   4. **Trigger** another workflow to deploy to **GitHub Pages**
 
 These components should make up the Obsidian to blog pipeline!
 ![obsidian-to-blog-pipeline.png](@/assets/blog/obsidian-to-blog-pipeline.png)
-#### See the specifics of this in my blog's GitHub repo!
+
+#### See the Specifics of This in My Blog's GitHub Repo!
 
 [seansusmilch/seansusmilch.github.io](https://github.com/seansusmilch/seansusmilch.github.io)
 
@@ -72,7 +75,7 @@ With this setup:
 
 This workflow saves me time and ensures that my Obsidian notes are a “source of truth” so to speak.
 
-### What can be better?
+### What Can Be Better?
 
 This setup does have at least one flaw in my opinion. That is, once you have all this set up you can't move your blog posts around or rename folders in your Obsidian vault. If you do so, you'd have to update the environment variables in your GitHub repo 👎
 
@@ -80,4 +83,5 @@ That's why when I come back to this, I'm going to try out an idea to resolve thi
 Instead of specifying a path, we could specify a special filename (ex. `!BLOG_POSTS!`) which `sync-posts.py` could then search for within your vault in order to find all your blog posts! 👍
 
 ---
+
 _If you'd like to see the specifics, feel free to look at the code on my GitHub repo [here](https://github.com/seansusmilch/seansusmilch.github.io)_
