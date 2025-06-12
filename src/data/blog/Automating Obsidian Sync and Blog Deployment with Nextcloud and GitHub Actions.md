@@ -26,8 +26,11 @@ Instead of just pulling blog posts from Obsidian, I wanted my **entire note-taki
 ## The Goals
 
 ⬜ Sync Obsidian notes across devices
+
 ⬜ Store notes in Nextcloud
+
 ⬜ Automatically update blog site with latest posts from Obsidian notes
+
 ⬜ ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
 
 
@@ -54,6 +57,7 @@ We now have the first half of our Obsidian to Blog pipeline!
 With this setup, my notes are always up-to-date across devices without needing to rely on third-party cloud services like iCloud or Google Drive.
 
 ✅ Sync Obsidian notes across devices
+
 ✅ Store notes in Nextcloud
 
 ## 2. Automating Blog Updates with GitHub Actions
