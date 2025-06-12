@@ -18,7 +18,11 @@ tags:
 ---
 Here's a writeup of my experience creating a newsletter that gives profitable reverse split opportunities. **I YAP A LOT** so don't hesitate to skip around with the TOC.
 
->Disclaimer: Please remember that any investment involves risk, and that this newsletter is not to be used as financial advice. Do your own research before coming to any sort of financial decisions.
+## Table of contents
+
+## Disclaimer
+
+*Please remember that any investment involves risk, and that this newsletter is not to be used as financial advice. Do your own research before coming to any sort of financial decisions.*
 
 ## Update June 2025!!!
 Lately, my reverse splits have not been going through on Robinhood. They've been getting sold instead of rounded up despite the announcements saying they would do so. I have not investigated this too much. 
@@ -29,8 +33,6 @@ Either way, as Kenny said in his post, this has become a legal grey area and I d
 
 **Due to these developments, I have stopped this service on June 5th, 2025**
 
-
-## Table of contents
 
 ## Inspiration
 
