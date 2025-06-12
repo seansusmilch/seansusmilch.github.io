@@ -25,10 +25,10 @@ Instead of just pulling blog posts from Obsidian, I wanted my **entire note-taki
 
 ## The Goals
 
-- [ ] Sync Obsidian notes across devices
-- [ ] Store notes in Nextcloud
-- [ ] Automatically update blog site with latest posts from Obsidian notes
-- [ ] ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
+⬜ Sync Obsidian notes across devices
+⬜ Store notes in Nextcloud
+⬜ Automatically update blog site with latest posts from Obsidian notes
+⬜ ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
 
 
 ## 1. Syncing Obsidian Notes with Nextcloud
@@ -53,8 +53,8 @@ We now have the first half of our Obsidian to Blog pipeline!
 
 With this setup, my notes are always up-to-date across devices without needing to rely on third-party cloud services like iCloud or Google Drive.
 
-- [x] Sync Obsidian notes across devices
-- [x] Store notes in Nextcloud
+✅ Sync Obsidian notes across devices
+✅ Store notes in Nextcloud
 
 ## 2. Automating Blog Updates with GitHub Actions
 
@@ -102,7 +102,7 @@ The idea is that this marker file will live within the folder your script is int
 
 That's the approach I've taken with `sync-posts.py`. The function `find_posts_source()` recursively looks for the first file named `!BLOG_POSTS!.md`. Whenever it finds that file, the script knows that the parent folder is where all the blog posts are!
 
-- [x] ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
+✅ ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
 
 ### Trigger Blog Deploy Action
 
@@ -139,7 +139,7 @@ on:
 
 This action handles the deployment of my markdown blog, which I created from a template called [satnaing/astro-paper](https://github.com/satnaing/astro-paper)
 
-- [x] Automatically update blog site with latest posts from Obsidian notes
+✅ Automatically update blog site with latest posts from Obsidian notes
 
 ## Final Thoughts
 
