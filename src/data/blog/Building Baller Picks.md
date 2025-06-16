@@ -12,6 +12,7 @@ tags:
   - pocketbase
   - nba
   - typescript
+  - project
 ---
 ![baller-picks-banner.png](@/assets/blog/baller-picks-banner.png)
 
