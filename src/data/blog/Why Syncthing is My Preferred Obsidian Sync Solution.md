@@ -14,6 +14,7 @@ tags:
   - syncthing
   - file-synchronization
 ---
+![obsidian-sync-header.png](@/assets/blog/obsidian-sync-header.png)
 ## Table of contents
 
 ## Introduction
@@ -25,6 +26,7 @@ If you're anything like me and use Obsidian for all your notes, then keeping the
 Before I dive into the nitty-gritty, let me tell you what I _really_ wanted out of a sync solution. With things like LiveSync, Remotely Save, or even Git, I always had this annoying wait. I'd open Obsidian, and then I'd have to just sit there for 30 to 60 seconds, sometimes even longer, waiting for the vault to fully sync up before I could actually start working. My goal was simple: I wanted my Obsidian vault to be completely synced and ready to go _before_ I even launched the app. No more waiting around, just instant access to my notes, no matter which device I picked up.
 
 ## Why Syncthing? My Syncing Adventure
+
 
 Before I landed on Syncthing, I went on a bit of a journey, experimenting with a few other methods. Each one had its good points and its not-so-good points:
 
@@ -87,13 +89,15 @@ On my Android phone, I went for the **Syncthing-Fork** app from the Google Play 
 
 The APK can also be found on Github! [Catfriend1/syncthing-android](https://github.com/Catfriend1/syncthing-android)
 
-![Screenshot_20250708-201343.png](@/assets/blog/Screenshot_20250708-201343.png)
+![syncthing-fork-screenshot.png](@/assets/blog/syncthing-fork-screenshot.png)
 
 ## Connecting Everything & Getting Your Obsidian Vault Syncing
 
 The real magic of Syncthing is getting all your devices to trust each other and then telling them which folders to share. My first move was connecting my Windows laptop to my "Goku" instance – that's my always-on Syncthing server running 24/7 in an Oracle Cloud VM using Docker Compose and Coolify.
 
 This 24/7 server isn't strictly necessary, but it will guarantee that your changes will be heard whenever you're working in your Obsidian vault.
+
+![syncthing-node-diagram.png](@/assets/blog/syncthing-node-diagram.png)
 
 **Here are the steps I followed to connect my devices and share my vault:**
 
@@ -130,13 +134,15 @@ This 24/7 server isn't strictly necessary, but it will guarantee that your chang
     - For each shared Obsidian vault folder, I went into the "Versioning" tab.
         
     - I picked **"Staggered File Versioning."** This feature keeps multiple old copies of your changed files, but it's smart about it – it deletes really old ones after a while or if disk space gets low. This has been a total **lifesaver** for me, especially when I've had conflicts or accidentally messed something up in my `.obsidian` configuration folder. If things go sideways, I can easily grab an older version of a whole folder!
+	![syncthing-file-versioning.png](@/assets/blog/syncthing-file-versioning.png)
+        *I just use the default settings for Staggered File Versioning*
         
 5. **No `.stignore` Needed (So far, so good!):**
     
     - Funnily enough, I haven't even needed to create a `.stignore` file for my Obsidian vault. Syncthing has just handled syncing everything, including the `.obsidian` folder and all its little files (like `workspace.json` and `trash`), without any problems or conflicts. All my devices are set to "Send & Receive," which means they can both send and get changes.
         
 
-## Quick Tips for a Super Smooth Obsidian Sync
+## ✅ Quick Tips for a Super Smooth Obsidian Sync
 
 - **First Sync Rule:** Always, always, _always_ close Obsidian on all your devices before that very first full sync of your vault. It just helps avoid any messy conflicts.
     
