@@ -12,6 +12,8 @@ tags:
   - python
   - homelab
   - project
+  - obsidian
+  - file-synchronization
 ---
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, a **GitHub Action** that runs a **Python script** that syncs posts to the repository, and another action to **deploy to GitHub Pages**.
 

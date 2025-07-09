@@ -4,7 +4,7 @@ pubDatetime: 2025-06-04T19:43:00Z
 slug: building-baller-picks
 title: "Building Baller Picks: An NBA Pick'em App"
 description: An in-depth look at creating a full-stack NBA pick'em PWA using cutting-edge web technologies
-featured: true
+featured: false
 draft: false
 tags:
   - astro

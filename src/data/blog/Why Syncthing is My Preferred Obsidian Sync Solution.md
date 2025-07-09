@@ -16,6 +16,8 @@ tags:
 ---
 ## Table of contents
 
+## Introduction
+
 If you're anything like me and use Obsidian for all your notes, then keeping them updated across _all_ your devices is a huge deal. Now, sure, there's the official Obsidian Sync service and other cloud stuff out there, and they're pretty easy. But honestly, sometimes that means giving up a bit of privacy, right? I really wanted a way to sync my notes that felt strong, private, and totally under my control. After trying out a bunch of options, Syncthing totally won me over. So, in this post, I'm gonna walk you through how I got Syncthing all set up to smoothly sync my Obsidian notes across my Windows laptop, Windows desktop, and Android phone. It's truly a private way to keep your notes in sync, just for you!
 
 ## My Use Case: Syncing Without the Wait
