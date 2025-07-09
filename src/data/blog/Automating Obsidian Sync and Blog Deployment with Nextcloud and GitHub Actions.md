@@ -42,6 +42,7 @@ To keep my Obsidian notes synced across devices, I used the [Remotely Save](http
 
 > Sidenote: Originally, I wanted to sync my notes to GitHub. However, that proved to be a messy pain in the ass. It was just merge conflicts on top of merge conflicts. Sure, it might be a skill issue, but I want this setup to be as frictionless and hands off as possible. So I decided to switch to my already existing Nextcloud instance.
 
+> Another Sidenote: I actually switched my main syncing solution to Syncthing! I use Syncthing in conjunction with Remotely Save and Nextcloud to keep this blog pipeline going. Perhaps in the future, I'll remove the dependency on Remotely Save, but for now, I'm happy. Read more about it [here](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/)
 ### Setting Up Remotely Save with Nextcloud
 
 At a high level, this is what I did to achieve this.
