@@ -18,11 +18,11 @@ tags:
 
 If you're anything like me and use Obsidian for all your notes, then keeping them updated across _all_ your devices is a huge deal. Now, sure, there's the official Obsidian Sync service and other cloud stuff out there, and they're pretty easy. But honestly, sometimes that means giving up a bit of privacy, right? I really wanted a way to sync my notes that felt strong, private, and totally under my control. After trying out a bunch of options, Syncthing totally won me over. So, in this post, I'm gonna walk you through how I got Syncthing all set up to smoothly sync my Obsidian notes across my Windows laptop, Windows desktop, and Android phone. It's truly a private way to keep your notes in sync, just for you!
 
-### My Use Case: Syncing Without the Wait
+## My Use Case: Syncing Without the Wait
 
 Before I dive into the nitty-gritty, let me tell you what I _really_ wanted out of a sync solution. With things like LiveSync, Remotely Save, or even Git, I always had this annoying wait. I'd open Obsidian, and then I'd have to just sit there for 30 to 60 seconds, sometimes even longer, waiting for the vault to fully sync up before I could actually start working. My goal was simple: I wanted my Obsidian vault to be completely synced and ready to go _before_ I even launched the app. No more waiting around, just instant access to my notes, no matter which device I picked up.
 
-### Why Syncthing? My Syncing Adventure
+## Why Syncthing? My Syncing Adventure
 
 Before I landed on Syncthing, I went on a bit of a journey, experimenting with a few other methods. Each one had its good points and its not-so-good points:
 
@@ -54,7 +54,7 @@ Syncthing really shone through, tackling all the annoyances I had with the other
 - **Minor Quirks:** Yeah, you do have to install a separate app for it. And it can be a _tiny_ bit slower than the self-hosted LiveSync plugin. But honestly, the reliability and the fact that it syncs in the background totally make up for that.
     
 
-### My Multi-Device Syncthing Setup: A Walkthrough
+## My Multi-Device Syncthing Setup: A Walkthrough
 
 Here’s how I got Syncthing all set up across my different devices:
 
@@ -83,7 +83,7 @@ On my Android phone, I went for the **Syncthing-Fork** app from the Google Play 
 
 The APK can also be found on Github! [Catfriend1/syncthing-android](https://github.com/Catfriend1/syncthing-android)
 
-### Connecting Everything & Getting Your Obsidian Vault Syncing
+## Connecting Everything & Getting Your Obsidian Vault Syncing
 
 The real magic of Syncthing is getting all your devices to trust each other and then telling them which folders to share. My first move was connecting my Windows laptop to my "Goku" instance – that's my always-on Syncthing server running 24/7 in an Oracle Cloud VM using Docker Compose and Coolify.
 
@@ -130,7 +130,7 @@ This 24/7 server isn't strictly necessary, but it will guarantee that your chang
     - Funnily enough, I haven't even needed to create a `.stignore` file for my Obsidian vault. Syncthing has just handled syncing everything, including the `.obsidian` folder and all its little files (like `workspace.json` and `trash`), without any problems or conflicts. All my devices are set to "Send & Receive," which means they can both send and get changes.
         
 
-### Quick Tips for a Super Smooth Obsidian Sync
+## Quick Tips for a Super Smooth Obsidian Sync
 
 - **First Sync Rule:** Always, always, _always_ close Obsidian on all your devices before that very first full sync of your vault. It just helps avoid any messy conflicts.
     
