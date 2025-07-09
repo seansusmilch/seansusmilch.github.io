@@ -78,12 +78,16 @@ For Windows, I found this awesome project called [Bill-Stewart/SyncthingWindowsS
     
 - **Initial Setup:** After it installed, Syncthing usually starts up on its own. I just searched for "Start Syncthing" in Windows, confirmed it was running, and then opened the "Syncthing configuration page" (also found via search). 
 - The first time, it'll ask you to set up a username and password for its web interface. After logging in, I deleted the default shared folder it creates.
+![syncthing-login-page.png](@/assets/blog/syncthing-login-page.png)
+![syncthing-dashboard.png](@/assets/blog/syncthing-dashboard.png)
 
 **2. Android Phone:**
 
 On my Android phone, I went for the **Syncthing-Fork** app from the Google Play Store. This version often has some cool extra features and runs really well on Android.
 
 The APK can also be found on Github! [Catfriend1/syncthing-android](https://github.com/Catfriend1/syncthing-android)
+
+![Screenshot_20250708-201343.png](@/assets/blog/Screenshot_20250708-201343.png)
 
 ## Connecting Everything & Getting Your Obsidian Vault Syncing
 
