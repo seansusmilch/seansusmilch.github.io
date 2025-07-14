@@ -99,7 +99,7 @@ One feature that I recently added, and I'm pretty happy about, is the "marker" f
 
 What is this "marker" file approach? It's actually pretty simple.
 
-#### Marker File
+#### 👉 Marker File
 
 Let's say you are looking for a folder, but you want to be able to move that folder around. You want the name, as well as its parent folder to be able to change, while your script still being able to locate it. How do?
 
