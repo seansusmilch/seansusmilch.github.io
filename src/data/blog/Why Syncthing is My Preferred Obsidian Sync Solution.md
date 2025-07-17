@@ -3,7 +3,7 @@ author: Sean
 pubDatetime: 2025-07-08T19:23:00Z
 slug: obsidian-syncthing-private-sync-guide
 title: Why Syncthing is My Preferred Obsidian Sync Solution
-description: Tired of waiting for your Obsidian vault to sync every time you open the app? Discover how Syncthing provides instant, private, and always-on synchronization across Windows and Android, eliminating the frustrating wait. This guide compares Syncthing's seamless solution against LiveSync, Remotely Save, and Git for a truly ready-when-you-are note-taking experience.
+description: Comparing Syncthing against LiveSync, Remotely Save, and Git for a truly hands off, always ready note-taking experience.
 featured: true
 draft: false
 tags:
