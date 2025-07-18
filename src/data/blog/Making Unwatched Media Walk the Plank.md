@@ -1,12 +1,14 @@
 ---
 author: Sean
 pubDatetime: 2025-07-14T01:18:00Z
-slug: 
-title: 
-description: 
+slug: how-i-figure-out-what-to-delete
+title: Making Unwatched Media Walk the Plank
+description: A showcase of a tool I built to help me figure out what to delete from my server when I need to clear up some space
 featured: true
 draft: true
 tags:
+  - showcase
+  - nextjs
 ---
 ### Least Watched: Conquering the Unwatched Mountain in My Homelab
 
@@ -76,7 +78,6 @@ The benefits of these optimizations? **Reduced API calls, improved parallelism, 
 
 No project is ever truly "done," and "Least Watched" is no different.
 
-- **Refining Data Accuracy:** I've still got a bug where some watched items (like _Severance_ and _Silo_) show up as unwatched. It's probably a batch query problem. My current workaround is to run with a batch size of 1 with retries. I need to **further investigate and build a robust solution** here.
 - **API Integration Improvements:** The Emby API for getting show and movie information can be a pain ("sucks"). A future goal is to **leverage Sonarr and Radarr APIs more directly** for this.
 - **User Experience & Deployment:**
     - I want to implement an **onboarding or setup wizard** – nobody likes a complex first run.
