@@ -2,16 +2,38 @@
 author: Sean
 pubDatetime: 2025-07-14T01:18:00Z
 slug: how-i-figure-out-what-to-delete
-title: Making Unwatched Media Walk the Plank
+title: Making My Unwatched Media Walk the Plank
 description: A showcase of a tool I built to help me figure out what to delete from my server when I need to clear up some space
 featured: true
 draft: true
 tags:
   - showcase
   - nextjs
+  - homelab
+  - media-server
 ---
-### Least Watched: Conquering the Unwatched Mountain in My Homelab
+[Google Gemini](https://gemini.google.com/app/b7ae50f62f101552)
 
+Put yourself in my shoes:
+
+It was the middle of a busy day, and I needed a file from my Nextcloud instance. Instead of my document, I got the dreaded "Internal server error." 😭
+
+> _Why is this happening??? I need that document now! It was working fine just a moment ago..._
+
+After dropping everything to troubleshoot, I found the culprit: my NAS was completely out of space. The media server's automatic downloads just sent it over the edge.
+
+**Friendly reminder to check your media server. Are you running out of space?**
+
+If you are, you know the pain. It's an endless cycle of second-guessing yourself while staring at a list of files:
+
+> _When was the last time anyone watched this? This show is taking up so much space, but my friend is still watching it… I can’t delete that!_
+
+All that work, only for the problem to return a few weeks later. Manually digging through terabytes to find what to delete is a challenge, and I needed a way to make this task less monotonous.
+## Introducing Diskover
+
+## Least Watched
+
+# Old
 Welp, if you're anything like me, you've probably got a mountain of digital content you've accumulated over the years. Movies, TV shows, Linux ISOs (😉) – they just pile up, consuming gigabyte after gigabyte on your drives. For us "data hoarders," it's easy to forget what’s even in there, let alone what’s been watched. This isn't just about digital clutter; it leads to **wasted storage space**, and trust me, it can cause critical issues. I literally **ran out of space on zhydra**, and that caused my Nextcloud instance to completely stop working! Talk about a messy pain in the ass!
 
 That headache, and the constant need for better alerts and clean-up tools, was the kick in the pants I needed. My goal? To finally get a handle on this "unwatched mountain" and deal with it **"whenever the drives fill up"**.
