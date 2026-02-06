@@ -1,0 +1,61 @@
+app # ./sync-posts.py 
+Cloning into '/tmp/blog-repo'...
+remote: Enumerating objects: 3671, done.
+remote: Counting objects: 100% (222/222), done.
+remote: Compressing objects: 100% (99/99), done.
+remote: Total 3671 (delta 157), reused 159 (delta 104), pack-reused 3449 (from 2)
+Receiving objects: 100% (3671/3671), 483.86 KiB | 8.49 MiB/s, done.
+Resolving deltas: 100% (2116/2116), done.
+remote: Enumerating objects: 17, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 17 (delta 0), reused 0 (delta 0), pack-reused 11 (from 2)
+Receiving objects: 100% (17/17), 85.25 KiB | 14.21 MiB/s, done.
+remote: Enumerating objects: 38, done.
+remote: Counting objects: 100% (18/18), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 38 (delta 0), reused 7 (delta 0), pack-reused 20 (from 1)
+Receiving objects: 100% (38/38), 34.13 MiB | 46.97 MiB/s, done.
+Updating files: 100% (39/39), done.
+Repository cloned and setup in /tmp/blog-repo
+Anchor file found in /data/Blog Posts/!BLOG_POSTS!.md
+sending incremental file list
+./
+!BLOG_POSTS!.md
+Automating Obsidian Sync and Blog Deployment with Nextcloud and GitHub Actions.md
+Building Baller Picks.md
+Creating a Reverse Split Newsletter.md
+Emby Setup Instructions.md
+Homelab Snapshot 1.md
+LXC Container with Docker and NFS.md
+Making My Unwatched Media Walk the Plank.md
+Removing Closed Captions from M3U8 Streams.md
+Test Post.md
+Why Syncthing is My Preferred Obsidian Sync Solution.md
+
+sent 64,878 bytes  received 228 bytes  130,212.00 bytes/sec
+total size is 63,790  speedup is 0.98
+Rsync result: 0 None None
+Replacing image https://media.tenor.com/4_41a1_Ha_UAAAAi/i%27m-confused.gif with @/assets/blog/i%27m-confused.gif
+Replacing image https://octodex.github.com/images/minion.png with @/assets/blog/minion.png
+Images processed in /tmp/blog-repo/src/data/blog
+Syncing image /data/Blog Posts/https:/media.tenor.com/4_41a1_Ha_UAAAAi/i%27m-confused.gif to /tmp/blog-repo/src/assets/blog
+Syncing image /data/Blog Posts/https:/octodex.github.com/images/minion.png to /tmp/blog-repo/src/assets/blog
+[main eaadd88] Update blog posts
+ 10 files changed, 203 insertions(+), 189 deletions(-)
+ create mode 100644 src/data/blog/!BLOG_POSTS!.md
+Enumerating objects: 28, done.
+Counting objects: 100% (28/28), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (15/15), 2.70 KiB | 2.70 MiB/s, done.
+Total 15 (delta 12), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (12/12), completed with 12 local objects.
+remote: 
+remote: GitHub found 1 vulnerability on seansusmilch/seansusmilch.github.io's default branch (1 low). To find out more, visit:
+remote:      https://github.com/seansusmilch/seansusmilch.github.io/security/dependabot/16
+remote: 
+To https://github.com/seansusmilch/seansusmilch.github.io
+   a00529f..eaadd88  HEAD -> main
+Repository cleaned up in /tmp/blog-repo
+/app # 

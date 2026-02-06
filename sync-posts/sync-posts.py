@@ -51,6 +51,8 @@ def sync_posts(source_dir, anchor_path, repo_dir, dest_posts):
             "rsync",
             "-av",
             "--delete",
+            "--exclude",
+            ANCHOR_FILENAME,
             str(source_dir / anchor_path.parent.name) + "/",
             str(dest_posts_path) + "/",
         ],
@@ -71,14 +73,13 @@ def process_images_in_posts(posts_dir, attachment_prefix):
         def replace_image(match):
             src = match.group(1)
             images.add(src)
-            stem = Path(src).stem
-            ext = Path(src).suffix
-            new_path = f"{attachment_prefix}/{stem}{ext}"
-            print(f"Replacing image {src} with {new_path}")
-            return f"]({new_path})"
+            image_path = Path(src)
+            markdown_image = f"[{image_path.name}]({attachment_prefix}/{image_path.name.replace(' ', '%20')})"
+            print(f"Replacing image [[{src}]] with {markdown_image}")
+            return markdown_image
 
         content = re.sub(
-            r"\]\(([^)]+\.(png|jpg|jpeg|gif|webp|svg))\)", replace_image, content
+            r"\[\[([^]]*\.(?:png|jpg|jpeg|gif|webp))\]\]", replace_image, content
         )
         post_file.write_text(content)
 
@@ -86,11 +87,11 @@ def process_images_in_posts(posts_dir, attachment_prefix):
     return images
 
 
-def sync_images(images, source_dir, anchor_path, repo_dir, dest_attachments):
+def sync_images(images, source_dir, repo_dir, dest_attachments):
     dest_attachments_path = repo_dir / dest_attachments
 
     for img in images:
-        src_img = source_dir / anchor_path.parent.name / img
+        src_img = source_dir / img
         print(f"Syncing image {src_img} to {dest_attachments_path}")
         if src_img.exists():
             subprocess.run(
@@ -134,7 +135,7 @@ def main():
 
     images = process_images_in_posts(posts_dir, ATTACHMENT_PREFIX)
 
-    sync_images(images, SOURCE_DIR, anchor_path, repo_dir, DEST_ATTACHMENTS)
+    sync_images(images, SOURCE_DIR, repo_dir, DEST_ATTACHMENTS)
 
     commit_and_push(repo_dir)
 
