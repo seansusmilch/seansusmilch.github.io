@@ -1,71 +1,88 @@
 #!/usr/bin/env python3
 
 import os
+import re
+import shutil
 import subprocess
 from pathlib import Path
-import re
+
+IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif", "webp"]
+TEMP_REPO_DIR = Path("/tmp/blog-repo")
+COMMIT_MESSAGE = "Update blog posts"
 
 
-SOURCE_DIR = Path(os.environ["SOURCE_DIR"])
-ANCHOR_FILENAME = os.environ["ANCHOR_FILENAME"]
-REPO_URL = os.environ["REPO_URL"]
-GH_PAT = os.environ["GH_PAT"]
-DEST_POSTS = os.environ["DEST_POSTS"]
-DEST_ATTACHMENTS = os.environ["DEST_ATTACHMENTS"]
-ATTACHMENT_PREFIX = os.environ["ATTACHMENT_PREFIX"]
-GIT_EMAIL = os.environ["GIT_EMAIL"]
-GIT_NAME = os.environ["GIT_NAME"]
+class Config:
+    def __init__(self):
+        self.source_dir = Path(os.environ["SOURCE_DIR"])
+        self.anchor_filename = os.environ["ANCHOR_FILENAME"]
+        self.repo_url = os.environ["REPO_URL"]
+        self.gh_pat = os.environ["GH_PAT"]
+        self.dest_posts = os.environ["DEST_POSTS"]
+        self.dest_attachments = os.environ["DEST_ATTACHMENTS"]
+        self.attachment_prefix = os.environ["ATTACHMENT_PREFIX"]
+        self.git_email = os.environ["GIT_EMAIL"]
+        self.git_name = os.environ["GIT_NAME"]
 
 
-def clone_and_setup_repo(repo_url, gh_pat, dest_posts, dest_attachments):
-    REPO_DIR = Path("/tmp/blog-repo")
-    auth_url = repo_url.replace("https://", f"https://{gh_pat}@")
+def run_command(args, cwd=None, check=True):
+    return subprocess.run(args, cwd=cwd, check=check)
 
-    subprocess.run(
-        ["git", "clone", "--filter=blob:none", "--sparse", auth_url, REPO_DIR],
-        check=True,
+
+def log(message):
+    print(message)
+
+
+def clone_and_setup_repo(config):
+    auth_url = config.repo_url.replace("https://", f"https://{config.gh_pat}@")
+
+    run_command(
+        ["git", "clone", "--filter=blob:none", "--sparse", auth_url, TEMP_REPO_DIR]
     )
-    subprocess.run(["git", "sparse-checkout", "init"], cwd=REPO_DIR, check=True)
-    subprocess.run(
-        ["git", "sparse-checkout", "set", dest_posts, dest_attachments],
-        cwd=REPO_DIR,
-        check=True,
+    run_command(["git", "sparse-checkout", "init"], cwd=TEMP_REPO_DIR)
+    run_command(
+        ["git", "sparse-checkout", "set", config.dest_posts, config.dest_attachments],
+        cwd=TEMP_REPO_DIR,
     )
 
-    print(f"Repository cloned and setup in {REPO_DIR}")
+    log(f"Repository cloned and setup in {TEMP_REPO_DIR}")
 
-    return REPO_DIR
+    return TEMP_REPO_DIR
 
 
-def find_anchor_file(source_dir, anchor_filename):
-    for f in source_dir.rglob(anchor_filename):
-        print(f"Anchor file found in {f}")
+def find_anchor_file(config):
+    for f in config.source_dir.rglob(config.anchor_filename):
+        log(f"Anchor file found in {f}")
         return f
-    raise FileNotFoundError(f"Anchor file {anchor_filename} not found in {source_dir}")
+    raise FileNotFoundError(
+        f"Anchor file {config.anchor_filename} not found in {config.source_dir}"
+    )
 
 
-def sync_posts(source_dir, anchor_path, repo_dir, dest_posts):
-    dest_posts_path = repo_dir / dest_posts
-    rsync_result = subprocess.run(
+def sync_posts(config, anchor_path, repo_dir):
+    source_path = config.source_dir / anchor_path.parent.name
+    dest_path = repo_dir / config.dest_posts
+
+    rsync_result = run_command(
         [
             "rsync",
             "-av",
             "--delete",
             "--exclude",
-            ANCHOR_FILENAME,
-            str(source_dir / anchor_path.parent.name) + "/",
-            str(dest_posts_path) + "/",
-        ],
-        check=True,
+            config.anchor_filename,
+            f"{source_path}/",
+            f"{dest_path}/",
+        ]
     )
-    print(
+    log(
         f"Rsync result: {rsync_result.returncode} {rsync_result.stdout} {rsync_result.stderr}"
     )
-    return dest_posts_path
+
+    return dest_path
 
 
-def process_images_in_posts(posts_dir, attachment_prefix):
+def process_images_in_posts(posts_dir, config):
     images = set()
+    image_pattern = r"\[\[([^]]*\.(?:{}))\]\]".format("|".join(IMAGE_EXTENSIONS))
 
     for post_file in posts_dir.glob("*.md"):
         content = post_file.read_text()
@@ -74,73 +91,59 @@ def process_images_in_posts(posts_dir, attachment_prefix):
             src = match.group(1)
             images.add(src)
             image_path = Path(src)
-            markdown_image = f"[{image_path.name}]({attachment_prefix}/{image_path.name.replace(' ', '%20')})"
-            print(f"Replacing image [[{src}]] with {markdown_image}")
+            markdown_image = f"[{image_path.name}]({config.attachment_prefix}/{image_path.name.replace(' ', '%20')})"
+            log(f"Replacing image [[{src}]] with {markdown_image}")
             return markdown_image
 
-        content = re.sub(
-            r"\[\[([^]]*\.(?:png|jpg|jpeg|gif|webp))\]\]", replace_image, content
-        )
+        content = re.sub(image_pattern, replace_image, content)
         post_file.write_text(content)
 
-    print(f"Images processed in {posts_dir}")
+    log(f"Images processed in {posts_dir}")
     return images
 
 
-def sync_images(images, anchor_path, repo_dir, dest_attachments):
-    dest_attachments_path = repo_dir / dest_attachments
+def sync_images(images, anchor_path, repo_dir, config):
+    dest_attachments_path = repo_dir / config.dest_attachments
     anchor_dir = anchor_path.parent
 
     for img in images:
         src_img = (anchor_dir / img).resolve()
-        print(f"Syncing image {src_img} to {dest_attachments_path}")
+        log(f"Syncing image {src_img} to {dest_attachments_path}")
         if src_img.exists():
-            subprocess.run(
-                ["rsync", "-av", str(src_img), str(dest_attachments_path)], check=True
-            )
+            run_command(["rsync", "-av", str(src_img), str(dest_attachments_path)])
 
 
-def commit_and_push(repo_dir):
-    subprocess.run(["git", "add", "."], cwd=repo_dir, check=True)
+def commit_and_push(repo_dir, config):
+    run_command(["git", "add", "."], cwd=repo_dir)
 
-    result = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=repo_dir)
+    result = run_command(
+        ["git", "diff", "--cached", "--quiet"], cwd=repo_dir, check=False
+    )
     if result.returncode == 0:
-        print("No changes to commit")
+        log("No changes to commit")
         return
 
-    subprocess.run(
-        ["git", "config", "user.email", GIT_EMAIL],
-        cwd=repo_dir,
-        check=True,
-    )
-    subprocess.run(["git", "config", "user.name", GIT_NAME], cwd=repo_dir, check=True)
-    subprocess.run(
-        ["git", "commit", "-m", "Update blog posts"], cwd=repo_dir, check=True
-    )
-    subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_dir, check=True)
+    run_command(["git", "config", "user.email", config.git_email], cwd=repo_dir)
+    run_command(["git", "config", "user.name", config.git_name], cwd=repo_dir)
+    run_command(["git", "commit", "-m", COMMIT_MESSAGE], cwd=repo_dir)
+    run_command(["git", "push", "origin", "HEAD"], cwd=repo_dir)
 
 
 def cleanup_repo(repo_dir):
-    import shutil
-
     if repo_dir.exists():
         shutil.rmtree(repo_dir)
-        print(f"Repository cleaned up in {repo_dir}")
+        log(f"Repository cleaned up in {repo_dir}")
 
 
 def main():
-    repo_dir = clone_and_setup_repo(REPO_URL, GH_PAT, DEST_POSTS, DEST_ATTACHMENTS)
+    config = Config()
 
-    anchor_path = find_anchor_file(SOURCE_DIR, ANCHOR_FILENAME)
-
-    posts_dir = sync_posts(SOURCE_DIR, anchor_path, repo_dir, DEST_POSTS)
-
-    images = process_images_in_posts(posts_dir, ATTACHMENT_PREFIX)
-
-    sync_images(images, anchor_path, repo_dir, DEST_ATTACHMENTS)
-
-    commit_and_push(repo_dir)
-
+    repo_dir = clone_and_setup_repo(config)
+    anchor_path = find_anchor_file(config)
+    posts_dir = sync_posts(config, anchor_path, repo_dir)
+    images = process_images_in_posts(posts_dir, config)
+    sync_images(images, anchor_path, repo_dir, config)
+    commit_and_push(repo_dir, config)
     cleanup_repo(repo_dir)
 
 
