@@ -87,11 +87,12 @@ def process_images_in_posts(posts_dir, attachment_prefix):
     return images
 
 
-def sync_images(images, source_dir, repo_dir, dest_attachments):
+def sync_images(images, anchor_path, repo_dir, dest_attachments):
     dest_attachments_path = repo_dir / dest_attachments
+    anchor_dir = anchor_path.parent
 
     for img in images:
-        src_img = source_dir / img
+        src_img = (anchor_dir / img).resolve()
         print(f"Syncing image {src_img} to {dest_attachments_path}")
         if src_img.exists():
             subprocess.run(
@@ -103,19 +104,20 @@ def commit_and_push(repo_dir):
     subprocess.run(["git", "add", "."], cwd=repo_dir, check=True)
 
     result = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=repo_dir)
-    if result.returncode != 0:
-        subprocess.run(
-            ["git", "config", "user.email", GIT_EMAIL],
-            cwd=repo_dir,
-            check=True,
-        )
-        subprocess.run(
-            ["git", "config", "user.name", GIT_NAME], cwd=repo_dir, check=True
-        )
-        subprocess.run(
-            ["git", "commit", "-m", "Update blog posts"], cwd=repo_dir, check=True
-        )
-        subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_dir, check=True)
+    if result.returncode == 0:
+        print("No changes to commit")
+        return
+
+    subprocess.run(
+        ["git", "config", "user.email", GIT_EMAIL],
+        cwd=repo_dir,
+        check=True,
+    )
+    subprocess.run(["git", "config", "user.name", GIT_NAME], cwd=repo_dir, check=True)
+    subprocess.run(
+        ["git", "commit", "-m", "Update blog posts"], cwd=repo_dir, check=True
+    )
+    subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_dir, check=True)
 
 
 def cleanup_repo(repo_dir):
@@ -135,7 +137,7 @@ def main():
 
     images = process_images_in_posts(posts_dir, ATTACHMENT_PREFIX)
 
-    sync_images(images, SOURCE_DIR, repo_dir, DEST_ATTACHMENTS)
+    sync_images(images, anchor_path, repo_dir, DEST_ATTACHMENTS)
 
     commit_and_push(repo_dir)
 
