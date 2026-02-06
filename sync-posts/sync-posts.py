@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import os
 import re
 import shutil
@@ -106,14 +107,19 @@ def sync_images(images, anchor_path, repo_dir, config):
     dest_attachments_path = repo_dir / config.dest_attachments
     anchor_dir = anchor_path.parent
 
+    args = ["rsync", "-av", "--delete"]
     for img in images:
-        src_img = (anchor_dir / img).resolve()
-        log(f"Syncing image {src_img} to {dest_attachments_path}")
-        if src_img.exists():
-            run_command(["rsync", "-av", str(src_img), str(dest_attachments_path)])
+        image_name = Path(img).name
+        args.extend(["--include", image_name])
+    args.extend(["--exclude", "*", f"{anchor_dir}/", f"{dest_attachments_path}/"])
+    run_command(args)
 
 
-def commit_and_push(repo_dir, config):
+def commit_and_push(repo_dir, config, no_commit=False):
+    if no_commit:
+        log("Skipping commit due to --no-commit flag")
+        return
+
     run_command(["git", "add", "."], cwd=repo_dir)
 
     result = run_command(
@@ -136,6 +142,10 @@ def cleanup_repo(repo_dir):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Sync blog posts and images")
+    parser.add_argument("--no-commit", action="store_true", help="Skip committing changes")
+    args = parser.parse_args()
+
     config = Config()
 
     repo_dir = clone_and_setup_repo(config)
@@ -143,7 +153,7 @@ def main():
     posts_dir = sync_posts(config, anchor_path, repo_dir)
     images = process_images_in_posts(posts_dir, config)
     sync_images(images, anchor_path, repo_dir, config)
-    commit_and_push(repo_dir, config)
+    commit_and_push(repo_dir, config, no_commit=args.no_commit)
     cleanup_repo(repo_dir)
 
 
