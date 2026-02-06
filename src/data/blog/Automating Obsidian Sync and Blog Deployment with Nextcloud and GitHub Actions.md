@@ -15,6 +15,7 @@ tags:
   - obsidian
   - file-synchronization
 ---
+
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, a **GitHub Action** that runs a **Python script** that syncs posts to the repository, and another action to **deploy to GitHub Pages**.
 
 ## Table of Contents
@@ -35,7 +36,6 @@ Instead of just pulling blog posts from Obsidian, I wanted my **entire note-taki
 
 ⬜ ⭐BONUS: Allow the blog posts folder to be moved/renamed in the vault!
 
-
 ## 1. Syncing Obsidian Notes with Nextcloud
 
 To keep my Obsidian notes synced across devices, I used the [Remotely Save](https://github.com/remotely-save/remotely-save) plugin. This plugin allows Obsidian to sync files via various backends. The one I'm interested for this is **WebDAV**, as **Nextcloud** provides a WebDAV endpoint by default.
@@ -43,6 +43,7 @@ To keep my Obsidian notes synced across devices, I used the [Remotely Save](http
 > Sidenote: Originally, I wanted to sync my notes to GitHub. However, that proved to be a messy pain in the ass. It was just merge conflicts on top of merge conflicts. Sure, it might be a skill issue, but I want this setup to be as frictionless and hands off as possible. So I decided to switch to my already existing Nextcloud instance.
 
 > Another Sidenote: I actually switched my main syncing solution to Syncthing! I use Syncthing in conjunction with Remotely Save and Nextcloud to keep this blog pipeline going. Perhaps in the future, I'll remove the dependency on Remotely Save, but for now, I'm happy. Read more about it [here](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/)
+
 ### Setting Up Remotely Save with Nextcloud
 
 At a high level, this is what I did to achieve this.
@@ -55,7 +56,7 @@ At a high level, this is what I did to achieve this.
 > I highly suggest you back up your vault and read up on the [Remotely Save](https://github.com/remotely-save/remotely-save) docs before implementing this into your vault!!!
 
 We now have the first half of our Obsidian to Blog pipeline!
-![obsidian-to-blog-pipeline.png](@/assets/blog/obsidian-to-blog-pipeline.png)
+![[../assets/image_obsidian-to-blog-pipeline.png]]
 
 With this setup, my notes are always up-to-date across devices without needing to rely on third-party cloud services like iCloud or Google Drive.
 
@@ -67,13 +68,13 @@ With this setup, my notes are always up-to-date across devices without needing t
 
 In order for us to achieve this part, we'll need some way to execute some scripts . What I ended up going with was a **GitHub Action** that runs a Python script to:
 
-  1. **Fetch** posts from my Nextcloud WebDAV folder (where my Obsidian notes are stored).
-  2. **Clone** those posts into a GitHub repository.
-  3. **Push** the updated posts to the repository.
-  4. **Trigger** another workflow to deploy to **GitHub Pages**
+1. **Fetch** posts from my Nextcloud WebDAV folder (where my Obsidian notes are stored).
+2. **Clone** those posts into a GitHub repository.
+3. **Push** the updated posts to the repository.
+4. **Trigger** another workflow to deploy to **GitHub Pages**
 
 These components should complete our Obsidian to Blog pipeline!
-![obsidian-to-blog-pipeline.png](@/assets/blog/obsidian-to-blog-pipeline.png)
+![[../assets/image_obsidian-to-blog-pipeline.png]]
 
 ### Sync Posts GitHub Action
 
@@ -82,10 +83,11 @@ These components should complete our Obsidian to Blog pipeline!
 The goal of this action is to fetch and process posts from our Obsidian vault via the WebDAV connection we're syncing to. This action runs on a cron schedule, but I can also execute it manually if I want to push an update through.
 
 This action does the following:
+
 1. Busy work
-	1. Clone the blog repo
-	2. Set up Python
-	3. Set up rclone
+   1. Clone the blog repo
+   2. Set up Python
+   3. Set up rclone
 2. Executes `scripts/sync-posts.py` (we'll get into this further)
 3. Triggers a separate action to deploy to GitHub Pages
 
@@ -95,7 +97,7 @@ This action does the following:
 
 This script was adapted from Network Chuck's script . His version of the script covered processing images and markdown pretty well. However since he was running this script on his local pc, and this setup is running in a GH action, Some modifications were needed.
 
-One feature that I recently added, and I'm pretty happy about, is the "marker" file approach to figuring out where your blog posts are in your Obsidian vault. 
+One feature that I recently added, and I'm pretty happy about, is the "marker" file approach to figuring out where your blog posts are in your Obsidian vault.
 
 What is this "marker" file approach? It's actually pretty simple.
 
@@ -105,7 +107,7 @@ Let's say you are looking for a folder, but you want to be able to move that fol
 
 That's where a "marker" file can be useful.
 
-The idea is that this marker file will live within the folder your script is interested in, and that it has a **unique** name. This allows your script to just glob an entire section of your filesystem looking for this unique filename. 
+The idea is that this marker file will live within the folder your script is interested in, and that it has a **unique** name. This allows your script to just glob an entire section of your filesystem looking for this unique filename.
 
 That's the approach I've taken with `sync-posts.py`. The function `find_posts_source()` recursively looks for the first file named `!BLOG_POSTS!.md`. Whenever it finds that file, the script knows that the parent folder is where all the blog posts are!
 
@@ -132,7 +134,7 @@ A solution to this is to dispatch an event to your repo via the `actions/github-
 		});
 ```
 
-This will dispatch an event called `publish-trigger` to your GH repo, and any action listening for that event will fire. 
+This will dispatch an event called `publish-trigger` to your GH repo, and any action listening for that event will fire.
 
 For your deploy action, you'll need to listen for this event by adding this snippet:
 
@@ -152,7 +154,7 @@ This action handles the deployment of my markdown blog, which I created from a t
 
 Welp, that completes our Obsidian to Blog pipeline!
 
-![obsidian-to-blog-pipeline.png](@/assets/blog/obsidian-to-blog-pipeline.png)
+![[../assets/image_obsidian-to-blog-pipeline.png]]
 
 This pipeline, leveraging **Obsidian's Remotely Save plugin**, **Nextcloud WebDAV**, and **GitHub Actions**, is my attempt at making note-taking and blogging easier for me. My primary goal of seamless syncing across devices and automated blog updates is now fully realized. It's incredibly satisfying to write in Obsidian, knowing my content is effortlessly synced and published without any manual intervention.
 

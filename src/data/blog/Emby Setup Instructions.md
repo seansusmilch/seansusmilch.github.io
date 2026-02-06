@@ -11,10 +11,13 @@ tags:
   - guide
   - media-server
 ---
+
 > This is a guide to help end users get started with Emby
 
-![dim-room-glowing-tv.png](@/assets/blog/dim-room-glowing-tv.png)
+![[../assets/image_dim-room-glowing-tv.png]]
+
 ## Table of contents
+
 ## Getting an Account
 
 1. Create an account here [https://emby.media/community/index.php?/register](https://emby.media/community/index.php?/register)
@@ -30,8 +33,8 @@ How you log in could vary slightly depending on the device
 ### Logging in on Phones
 
 1. Download the Emby app.
-    1. [🍎iOS](https://apps.apple.com/us/app/emby/id992180193)
-    2. [🤖Android](https://play.google.com/store/apps/details?id=com.mb.android&hl=en_US&gl=US)
+   1. [🍎iOS](https://apps.apple.com/us/app/emby/id992180193)
+   2. [🤖Android](https://play.google.com/store/apps/details?id=com.mb.android&hl=en_US&gl=US)
 2. Get to the screen titled "Sign in with Emby Connect"
 3. Sign in with the account info you just created
 4. Select the server
