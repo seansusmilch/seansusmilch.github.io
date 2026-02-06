@@ -8,7 +8,7 @@ ENV DEST_POSTS=src/data/blog
 ENV DEST_ATTACHMENTS=src/assets/blog
 ENV ATTACHMENT_PREFIX=@/assets/blog
 ENV GIT_EMAIL=action@github.com
-ENV GIT_NAME=Sync Posts Bot
+ENV GIT_NAME="Sync Posts Bot"
 
 WORKDIR /app
 
