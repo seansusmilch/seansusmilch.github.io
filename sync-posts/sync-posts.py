@@ -52,14 +52,14 @@ def sync_posts(source_dir, anchor_path, repo_dir, dest_posts):
             "-av",
             "--delete",
             str(source_dir / anchor_path.parent.name) + "/",
-            str(dest_posts_path / anchor_path.parent.name) + "/",
+            str(dest_posts_path) + "/",
         ],
         check=True,
     )
     print(
         f"Rsync result: {rsync_result.returncode} {rsync_result.stdout} {rsync_result.stderr}"
     )
-    return dest_posts_path / anchor_path.parent.name
+    return dest_posts_path
 
 
 def process_images_in_posts(posts_dir, attachment_prefix):
