@@ -14,7 +14,8 @@ tags:
   - typescript
   - project
 ---
-![baller-picks-banner.png](@/assets/blog/baller-picks-banner.png)
+
+![image_baller-picks-banner.png](@/assets/blog/image_baller-picks-banner.png)
 
 > _An in-depth look at the process and technology behind creating a full-stack NBA pick'em Progressive Web App._
 
@@ -36,7 +37,7 @@ Baller Picks is a comprehensive platform that allows NBA fans (my friends and I)
 
 The platform leverages real NBA data, providing users with up-to-date matchup information and team statistics to make informed predictions.
 
-![w-picks-homepage-mobile.png](@/assets/blog/w-picks-homepage-mobile.png)
+![image_w-picks-homepage-mobile.png](@/assets/blog/image_w-picks-homepage-mobile.png)
 
 ## Technology Choices
 
@@ -92,16 +93,16 @@ export type PickType = z.infer<typeof PickZ>;
 
 This approach ensures that data conforms to the expected structure throughout the application, from database queries to API responses to frontend components, which significantly reduces runtime errors.
 
-![baller-picks-db-schema.png](@/assets/blog/baller-picks-db-schema.png)
+![image_baller-picks-db-schema.png](@/assets/blog/image_baller-picks-db-schema.png)
 _Entity Relationship Diagram_
 
 ## Key Feature Implementation
 
 Here is a look at how some of the application's primary features were built.
 
-![baller-picks-pick-interface.png](@/assets/blog/baller-picks-pick-interface.png)
+![image_baller-picks-pick-interface.png](@/assets/blog/image_baller-picks-pick-interface.png)
 _matchup interface before the game happens, and no picks are present_
-![baller-picks-list.png](@/assets/blog/baller-picks-list.png)
+![image_baller-picks-list.png](@/assets/blog/image_baller-picks-list.png)
 _matchup interface after the game has ended and picks are locked_
 
 1. Real-Time NBA Data Integration
@@ -112,13 +113,13 @@ To provide timely and accurate information, the platform automatically synchroni
 
 To provide an experience closer to a native mobile app, Baller Picks was built as a PWA. This includes a service worker for caching strategies and offline access, a web app manifest, and a responsive design optimized for all screen sizes. Users can install the app to their home screen for easy access.
 
-![baller-picks-pwa-install.png](@/assets/blog/baller-picks-pwa-install.png)
+![image_baller-picks-pwa-install.png](@/assets/blog/image_baller-picks-pwa-install.png)
 
 3. User Statistics & Performance Tracking
 
 A key feature is the ability for users to track their prediction performance. I developed a system that calculates weekly and overall statistics, such as win/loss ratios and correct pick percentages. These stats are displayed on user profiles and aggregated into a site-wide leaderboard.
 
-![baller-picks-user-stats.png](@/assets/blog/baller-picks-user-stats.png)
+![image_baller-picks-user-stats.png](@/assets/blog/image_baller-picks-user-stats.png)
 _user stats on profile page_
 
 ## Key Takeaways
