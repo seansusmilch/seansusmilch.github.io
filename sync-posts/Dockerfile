@@ -16,4 +16,6 @@ RUN apk add --no-cache rsync python3 git
 
 COPY . .
 
+RUN chmod +x sync-posts.py
+
 CMD ["sleep", "infinity"]
