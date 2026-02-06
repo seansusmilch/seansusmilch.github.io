@@ -32,18 +32,21 @@ def clone_and_setup_repo(repo_url, gh_pat, dest_posts, dest_attachments):
         check=True,
     )
 
+    print(f"Repository cloned and setup in {REPO_DIR}")
+
     return REPO_DIR
 
 
 def find_anchor_file(source_dir, anchor_filename):
     for f in source_dir.rglob(anchor_filename):
+        print(f"Anchor file found in {f}")
         return f
     raise FileNotFoundError(f"Anchor file {anchor_filename} not found in {source_dir}")
 
 
 def sync_posts(source_dir, anchor_path, repo_dir, dest_posts):
     dest_posts_path = repo_dir / dest_posts
-    subprocess.run(
+    rsync_result = subprocess.run(
         [
             "rsync",
             "-av",
@@ -52,6 +55,9 @@ def sync_posts(source_dir, anchor_path, repo_dir, dest_posts):
             str(dest_posts_path / anchor_path.parent.name) + "/",
         ],
         check=True,
+    )
+    print(
+        f"Rsync result: {rsync_result.returncode} {rsync_result.stdout} {rsync_result.stderr}"
     )
     return dest_posts_path / anchor_path.parent.name
 
@@ -68,6 +74,7 @@ def process_images_in_posts(posts_dir, attachment_prefix):
             stem = Path(src).stem
             ext = Path(src).suffix
             new_path = f"{attachment_prefix}/{stem}{ext}"
+            print(f"Replacing image {src} with {new_path}")
             return f"]({new_path})"
 
         content = re.sub(
@@ -75,6 +82,7 @@ def process_images_in_posts(posts_dir, attachment_prefix):
         )
         post_file.write_text(content)
 
+    print(f"Images processed in {posts_dir}")
     return images
 
 
@@ -83,6 +91,7 @@ def sync_images(images, source_dir, anchor_path, repo_dir, dest_attachments):
 
     for img in images:
         src_img = source_dir / anchor_path.parent.name / img
+        print(f"Syncing image {src_img} to {dest_attachments_path}")
         if src_img.exists():
             subprocess.run(
                 ["rsync", "-av", str(src_img), str(dest_attachments_path)], check=True
@@ -110,8 +119,10 @@ def commit_and_push(repo_dir):
 
 def cleanup_repo(repo_dir):
     import shutil
+
     if repo_dir.exists():
         shutil.rmtree(repo_dir)
+        print(f"Repository cleaned up in {repo_dir}")
 
 
 def main():
