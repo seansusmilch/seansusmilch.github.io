@@ -135,7 +135,11 @@ def commit_and_push(repo_dir, config, no_commit=False):
     run_command(["git", "push", "origin", "HEAD"], cwd=repo_dir)
 
 
-def cleanup_repo(repo_dir):
+def cleanup_repo(repo_dir, no_cleanup=False):
+    if no_cleanup:
+        log(f"Skipping cleanup, repo left at {repo_dir}")
+        return
+
     if repo_dir.exists():
         shutil.rmtree(repo_dir)
         log(f"Repository cleaned up in {repo_dir}")
@@ -144,6 +148,7 @@ def cleanup_repo(repo_dir):
 def main():
     parser = argparse.ArgumentParser(description="Sync blog posts and images")
     parser.add_argument("--no-commit", action="store_true", help="Skip committing changes")
+    parser.add_argument("--no-cleanup", action="store_true", help="Leave repo in tmp folder")
     args = parser.parse_args()
 
     config = Config()
@@ -154,7 +159,7 @@ def main():
     images = process_images_in_posts(posts_dir, config)
     sync_images(images, anchor_path, repo_dir, config)
     commit_and_push(repo_dir, config, no_commit=args.no_commit)
-    cleanup_repo(repo_dir)
+    cleanup_repo(repo_dir, no_cleanup=args.no_cleanup)
 
 
 if __name__ == "__main__":
