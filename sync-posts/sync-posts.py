@@ -108,6 +108,12 @@ def commit_and_push(repo_dir):
         subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_dir, check=True)
 
 
+def cleanup_repo(repo_dir):
+    import shutil
+    if repo_dir.exists():
+        shutil.rmtree(repo_dir)
+
+
 def main():
     repo_dir = clone_and_setup_repo(REPO_URL, GH_PAT, DEST_POSTS, DEST_ATTACHMENTS)
 
@@ -120,6 +126,8 @@ def main():
     sync_images(images, SOURCE_DIR, anchor_path, repo_dir, DEST_ATTACHMENTS)
 
     commit_and_push(repo_dir)
+
+    cleanup_repo(repo_dir)
 
 
 if __name__ == "__main__":
