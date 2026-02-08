@@ -107,7 +107,7 @@ def process_images_in_posts(posts_dir, config):
 
 
 def resolve_image_path(src, post_file, config):
-    image_path = config.source_dir / src[1:]
+    image_path = config.source_dir / src
 
     if image_path.exists():
         return image_path
