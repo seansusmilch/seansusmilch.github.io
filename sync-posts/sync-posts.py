@@ -83,15 +83,18 @@ def sync_posts(config, anchor_path, repo_dir):
 
 def process_images_in_posts(posts_dir, config):
     images = set()
-    image_pattern = r"\[\[([^]]*\.(?:{}))\]\]".format("|".join(IMAGE_EXTENSIONS))
+    image_pattern = r"\[\[!?([^]|]*\.(?:{}))\]\]".format("|".join(IMAGE_EXTENSIONS))
 
     for post_file in posts_dir.glob("*.md"):
         content = post_file.read_text()
 
         def replace_image(match):
             src = match.group(1)
-            images.add(src)
+            src = src.lstrip('!')
+
+            images.add((src, post_file))
             image_path = Path(src)
+
             markdown_image = f"[{image_path.name}]({config.attachment_prefix}/{image_path.name.replace(' ', '%20')})"
             log(f"Replacing image [[{src}]] with {markdown_image}")
             return markdown_image
@@ -103,15 +106,47 @@ def process_images_in_posts(posts_dir, config):
     return images
 
 
+def resolve_image_path(src, anchor_dir, post_file):
+    src_path = Path(src)
+
+    if src_path.is_absolute():
+        raise ValueError(f"Absolute paths not supported: {src}")
+
+    potential_paths = []
+
+    if src.startswith("/"):
+        potential_paths.append(anchor_dir / src_path.name)
+        potential_paths.append(anchor_dir / src_path.parts[0] / src_path.name)
+    elif src.startswith("./"):
+        potential_paths.append(post_file.parent / src_path.name)
+    else:
+        potential_paths.append(post_file.parent / src)
+        potential_paths.append(anchor_dir / src)
+
+        path_parts = src.split("/")
+        if len(path_parts) > 1:
+            potential_paths.append(anchor_dir / path_parts[0] / path_parts[-1])
+
+    for path in potential_paths:
+        if path.exists():
+            return path
+
+    raise FileNotFoundError(
+        f"Image not found: {src}\n"
+        f"Tried: {potential_paths}\n"
+        f"Post file: {post_file}\n"
+        f"Anchor dir: {anchor_dir}"
+    )
+
+
 def sync_images(images, anchor_path, repo_dir, config):
     dest_attachments_path = repo_dir / config.dest_attachments
     anchor_dir = anchor_path.parent
 
-    for img in images:
-        src_img = (anchor_dir / img).resolve()
+    for src, post_file in images:
+        src_img = resolve_image_path(src, anchor_dir, post_file)
         log(f"Syncing image {src_img} to {dest_attachments_path}")
-        if src_img.exists():
-            run_command(["rsync", "-av", str(src_img), str(dest_attachments_path)])
+        run_command(["rsync", "-av", str(src_img), str(dest_attachments_path)])
 
 
 def commit_and_push(repo_dir, config, no_commit=False):
