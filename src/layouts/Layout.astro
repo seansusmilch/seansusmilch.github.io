@@ -127,8 +127,14 @@ const structuredData = {
       src="https://umuumi.ipv64.de/script.js"
       data-website-id="01b386e9-8e37-4dcb-b427-765c1cb3d022"
     ></script>
-    <script src="https://cdn.amplitude.com/script/9fdfb3da776079fb062c77e48dc138de.js"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('9fdfb3da776079fb062c77e48dc138de', {"fetchRemoteConfig":true,"autocapture":{"attribution":true,"fileDownloads":true,"formInteractions":true,"pageViews":true,"sessions":true,"elementInteractions":true,"networkTracking":true,"webVitals":true,"frustrationInteractions":{"errorClicks":true,"deadClicks":true,"rageClicks":true}}});</script>
-  </head>
+    <script src="https://cdn.amplitude.com/script/9fdfb3da776079fb062c77e48dc138de.js"></script>
+    <script>
+      window.amplitude.init('9fdfb3da776079fb062c77e48dc138de', {
+        fetchRemoteConfig: true,
+        autocapture: true
+      });
+    </script>
+   </head>
   <body>
     <slot />
   </body>
