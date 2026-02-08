@@ -1,7 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
-import { OpenPanelComponent } from '@openpanel/astro';
 import "@/styles/global.css";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
@@ -135,13 +134,11 @@ const structuredData = {
         autocapture: true
       });
     </script>
-    <OpenPanelComponent
-      apiUrl="https://opanel.umuumi.ipv64.de"
-      clientId="6f90adf4-dcf9-413c-88ef-65114f1896ac"
-      trackScreenViews={true}
-      trackOutgoingLinks={true}
-      trackAttributes={true}
-    />
+    <script
+        src="https://rybbit.umuumi.ipv64.de/api/script.js"
+        data-site-id="b5cf8d8d7fc8"
+        defer
+    ></script>
    </head>
   <body>
     <slot />

@@ -17,9 +17,6 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.4.1
         version: 3.4.1
-      '@openpanel/astro':
-        specifier: ^1.0.7
-        version: 1.0.7(astro@5.9.0(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.42.0)(typescript@5.8.2)(yaml@2.7.0))
       '@resvg/resvg-js':
         specifier: ^2.6.2
         version: 2.6.2
@@ -633,17 +630,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@openpanel/astro@1.0.7':
-    resolution: {integrity: sha512-vTUtyQLf4VoD1cUeMf0kBqwZROE6qyFYqzQjzvRg4GkV0iPu/fecIUI+2z5KqtZt3YlCU1F31tJX00tX0zMmXg==}
-    peerDependencies:
-      astro: ^4.0.0 || ^5.0.0
-
-  '@openpanel/sdk@1.0.4':
-    resolution: {integrity: sha512-F4XocyiaUwUnNRre9LNa9RyTiX/fXcttR4rfFAmMxx6FrbcaemDzMYIg+mH3Hv7lwZqBSo1t2/jObkjpbqjW0g==}
-
-  '@openpanel/web@1.0.7':
-    resolution: {integrity: sha512-lhZCIjUSy5XCcTyzHisehJkdr2/PPEEpMbc8cKtg/5zqxGhHLWIoOiLDjD357KGaxzHg43QVWPe5YBO+Wpto0A==}
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -3530,17 +3516,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.0
-
-  '@openpanel/astro@1.0.7(astro@5.9.0(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.42.0)(typescript@5.8.2)(yaml@2.7.0))':
-    dependencies:
-      '@openpanel/web': 1.0.7
-      astro: 5.9.0(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.42.0)(typescript@5.8.2)(yaml@2.7.0)
-
-  '@openpanel/sdk@1.0.4': {}
-
-  '@openpanel/web@1.0.7':
-    dependencies:
-      '@openpanel/sdk': 1.0.4
 
   '@oslojs/encoding@1.1.0': {}
 
