@@ -106,44 +106,16 @@ def process_images_in_posts(posts_dir, config):
     return images
 
 
-def resolve_image_path(src, anchor_dir, post_file):
-    src_path = Path(src)
+def resolve_image_path(src, post_file, config):
+    image_path = config.source_dir / src[1:]
 
-    if src_path.is_absolute():
-        raise ValueError(f"Absolute paths not supported: {src}")
-
-    potential_paths = []
-
-    if src.startswith("/"):
-        stem = src_path.stem
-        potential_paths.append(anchor_dir / src[1:])
-        potential_paths.append(anchor_dir / f"{src[1:].split('/')[0]}/attachments" / src_path.name)
-        potential_paths.append(anchor_dir / "attachments" / src_path.name)
-    elif src.startswith("./"):
-        potential_paths.append(post_file.parent / src_path.name)
-        potential_paths.append(anchor_dir / "attachments" / src_path.name)
-    else:
-        parts = src.split("/")
-        potential_paths.append(post_file.parent / src)
-        potential_paths.append(post_file.parent / "attachments" / src_path.name)
-        potential_paths.append(anchor_dir / src)
-
-        if len(parts) > 1:
-            potential_paths.append(anchor_dir / parts[0] / "attachments" / src_path.name)
-            potential_paths.append(anchor_dir / "attachments" / src_path.name)
-        else:
-            potential_paths.append(anchor_dir / "attachments" / src)
-            potential_paths.append(anchor_dir / src)
-
-    for path in potential_paths:
-        if path.exists():
-            return path
+    if image_path.exists():
+        return image_path
 
     raise FileNotFoundError(
         f"Image not found: {src}\n"
-        f"Tried: {potential_paths}\n"
-        f"Post file: {post_file}\n"
-        f"Anchor dir: {anchor_dir}"
+        f"Expected at: {image_path}\n"
+        f"Post file: {post_file}"
     )
 
 
@@ -152,7 +124,7 @@ def sync_images(images, anchor_path, repo_dir, config):
     anchor_dir = anchor_path.parent
 
     for src, post_file in images:
-        src_img = resolve_image_path(src, anchor_dir, post_file)
+        src_img = resolve_image_path(src, post_file, config)
         log(f"Syncing image {src_img} to {dest_attachments_path}")
         run_command(["rsync", "-av", str(src_img), str(dest_attachments_path)])
 
