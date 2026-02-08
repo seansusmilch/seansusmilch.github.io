@@ -120,13 +120,6 @@ const structuredData = {
     <ClientRouter />
 
     <script is:inline src="/toggle-theme.js" async></script>
-    <script
-      async
-      is:inline
-      data-astro-rerun
-      src="https://umuumi.ipv64.de/script.js"
-      data-website-id="01b386e9-8e37-4dcb-b427-765c1cb3d022"
-    ></script>
     <script src="https://cdn.amplitude.com/script/9fdfb3da776079fb062c77e48dc138de.js"></script>
     <script>
       window.amplitude.init('9fdfb3da776079fb062c77e48dc138de', {
@@ -137,7 +130,9 @@ const structuredData = {
     <script
         src="https://rybbit.umuumi.ipv64.de/api/script.js"
         data-site-id="b5cf8d8d7fc8"
-        defer
+        async
+        is:inline
+        data-astro-rerun
     ></script>
    </head>
   <body>
