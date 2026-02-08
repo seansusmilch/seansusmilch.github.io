@@ -96,7 +96,7 @@ def process_images_in_posts(posts_dir, config):
             image_path = Path(src)
 
             markdown_image = f"[{image_path.name}]({config.attachment_prefix}/{image_path.name.replace(' ', '%20')})"
-            log(f"Replacing image [[{src}]] with {markdown_image}")
+            log(f"Link changed in {post_file.name}: [[{src}]] → {markdown_image}")
             return markdown_image
 
         content = re.sub(image_pattern, replace_image, content)
@@ -119,9 +119,8 @@ def resolve_image_path(src, post_file, config):
     )
 
 
-def sync_images(images, anchor_path, repo_dir, config):
+def sync_images(images, repo_dir, config):
     dest_attachments_path = repo_dir / config.dest_attachments
-    anchor_dir = anchor_path.parent
 
     for src, post_file in images:
         src_img = resolve_image_path(src, post_file, config)
@@ -175,7 +174,7 @@ def main():
     anchor_path = find_anchor_file(config)
     posts_dir = sync_posts(config, anchor_path, repo_dir)
     images = process_images_in_posts(posts_dir, config)
-    sync_images(images, anchor_path, repo_dir, config)
+    sync_images(images, repo_dir, config)
     commit_and_push(repo_dir, config, no_commit=args.no_commit)
     cleanup_repo(repo_dir, no_cleanup=args.no_cleanup)
 
