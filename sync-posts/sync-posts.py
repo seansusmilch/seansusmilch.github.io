@@ -115,17 +115,25 @@ def resolve_image_path(src, anchor_dir, post_file):
     potential_paths = []
 
     if src.startswith("/"):
-        potential_paths.append(anchor_dir / src_path.name)
-        potential_paths.append(anchor_dir / src_path.parts[0] / src_path.name)
+        stem = src_path.stem
+        potential_paths.append(anchor_dir / src[1:])
+        potential_paths.append(anchor_dir / f"{src[1:].split('/')[0]}/attachments" / src_path.name)
+        potential_paths.append(anchor_dir / "attachments" / src_path.name)
     elif src.startswith("./"):
         potential_paths.append(post_file.parent / src_path.name)
+        potential_paths.append(anchor_dir / "attachments" / src_path.name)
     else:
+        parts = src.split("/")
         potential_paths.append(post_file.parent / src)
+        potential_paths.append(post_file.parent / "attachments" / src_path.name)
         potential_paths.append(anchor_dir / src)
 
-        path_parts = src.split("/")
-        if len(path_parts) > 1:
-            potential_paths.append(anchor_dir / path_parts[0] / path_parts[-1])
+        if len(parts) > 1:
+            potential_paths.append(anchor_dir / parts[0] / "attachments" / src_path.name)
+            potential_paths.append(anchor_dir / "attachments" / src_path.name)
+        else:
+            potential_paths.append(anchor_dir / "attachments" / src)
+            potential_paths.append(anchor_dir / src)
 
     for path in potential_paths:
         if path.exists():
