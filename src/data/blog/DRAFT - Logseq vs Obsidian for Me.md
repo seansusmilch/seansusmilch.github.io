@@ -9,5 +9,6 @@ draft: true
 tags:
   - obsidian
   - logseq
+  - notetaking
 ---
 ## Table of contents
