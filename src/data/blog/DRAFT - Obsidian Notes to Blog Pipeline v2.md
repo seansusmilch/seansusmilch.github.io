@@ -37,9 +37,21 @@ On Github
 
 My problems with this setup, especially after switching to Syncthing for my syncing needs, was that it depended on getting my notes into Nextcloud. This was nowhere near as convenient It was a clear next dependency to remove from the pipeline. Also, all the credentials to connect to my entire Nextcloud instance would be saved and used in GitHub
 
-## The Next Solution
+## What's The Next Solution? 
 
 I originally thought of trying to refactor the existing GitHub action to connect to my Syncthing network, but after thinking about it for awhile, its a questionable architecture in terms of privacy. 
 
+%% maybe do less of a privacy play or include that my previous setup had a big oversight %%
 Think about it, your entire Obsidian vault would be copied onto a GH action runner, and the credentials to do it would be saved in GitHub. Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a github action.
 
+I acknowledge that my previous setup where GitHub Actions would connect to my notes via Next Cloud wasnt any better and was probably a big oversight in terms of privacy and opsec. 
+
+This is when I realized a push strategy coming from a machine that I control would be preferred.
+
+## The Push Strategy
+
+The push strategy comes with many advantages over the previous pull strategy.
+
+- I can run it on an existing server that's on 24 7.
+- I won't need to waste gitHub Action runs that result in no changes
+- gitHub will never have full access to my notes like it did with the pull strategy.
