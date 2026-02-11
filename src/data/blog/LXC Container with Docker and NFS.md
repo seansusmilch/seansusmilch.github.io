@@ -30,7 +30,9 @@ I recently switched to using almost exclusively Proxmox LXC containers with dock
 bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/ct/docker.sh)"
 ```
 
-> I just use all the default settings. No Portainer, no docker-compose, nothing... 2. Make new user "sean"
+> I just use all the default settings. No Portainer, no docker-compose, nothing... 
+
+2. Make new user "sean"
 
 ```bash
 adduser sean

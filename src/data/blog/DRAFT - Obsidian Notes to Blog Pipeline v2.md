@@ -55,3 +55,26 @@ The push strategy comes with many advantages over the previous pull strategy.
 - I can run it on an existing server that's on 24 7.
 - I won't need to waste gitHub Action runs that result in no changes
 - gitHub will never have full access to my notes like it did with the pull strategy.
+
+%% add a graphic here to explain the flow visually %%
+So the basic idea is this. I write my notes on my laptop in Obsidian. With Syncthing, my notes get synced up to my always on server. Then, on a schedule, a script that takes care of the pushing gets run.
+
+At a high level, that script is responsible for the following: 
+
+1. Set up git credentials and clone blog repo 
+2. Find anchor file within vault (`! BLOG_POSTS!.md`)
+3. Sync obsidian blog post notes to blog repo 
+4. In each post convert image wikilinks to markdown links
+5. Sync images that are referenced in posts to blog repo
+6. Commit and push
+
+It's pretty similar to the script from the pull strategy, except we are dealing with git instead of nextcloud
+
+## Technical Execution
+
+Now that we have a basic understanding of what we are trying to do, let's get into the execution of setting up this workflow.
+
+As I've talked about in my post about [Syncthing and Obsidian](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/), I have a VM in Oracle Cloud that is running 24.7, and acting as a persistent syncthing node. This makes it a perfect place to have this script run on a schedule.
+
+Since I'm running Coolify on this VM, I want to be able to view logs and control deploys, and set the scheduled sync job through Coolify's WebUI. This means that dockerizing my solution would offer me the best experience.
+

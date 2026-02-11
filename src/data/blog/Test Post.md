@@ -13,7 +13,21 @@ Just a test page
 
 # Table of contents
 
+## PKM Features/Other
 
+Inline tags #test 
+
+==Highlighting==
+
+Wiki links [[Blog Posts/Test Post|Test Post]]
+
+- [ ] Todo
+- [x] Todo
+
+%% comments %%
+
+![PXL_20251201_014816847.MP.jpg](@/assets/blog/PXL_20251201_014816847.MP.jpg)
+*Sengokuhara Susuki Grass Hills near Hakone, Japan*
 # h1 Heading
 ## h2 Heading
 ### h3 Heading
