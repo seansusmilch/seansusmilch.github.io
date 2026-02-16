@@ -132,8 +132,15 @@ RUN chmod +x sync-posts.py
 CMD ["sleep", "infinity"]
 ```
 
+Now it's ready to go live in Coolify!
+### Coolify Setup
 
+Okay the truth is, I set this part up before doing the above. I was just pushing changes to the Dockerfile and letting Coolify deploy, then used their integrated terminal to figure out what needed to be done for this sync posts script.
+
+The build setup was simple. In my blog repo, I put this posts syncing project in a new folder `/sync-posts`, then pointed Coolify to watch for any changes in that dir, and pointed it at that Dockerfile.
 
 ![obsidian-blog-2-coolify-build.png](@/assets/blog/obsidian-blog-2-coolify-build.png)
+
+Once that was set up
 
 ![obsidian-blog-2-coolify-schedule.png](@/assets/blog/obsidian-blog-2-coolify-schedule.png)
