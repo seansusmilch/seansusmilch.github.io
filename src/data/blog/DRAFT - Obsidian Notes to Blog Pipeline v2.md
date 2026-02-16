@@ -141,6 +141,7 @@ The build setup was simple. In my blog repo, I put this posts syncing project in
 
 ![obsidian-blog-2-coolify-build.png](@/assets/blog/obsidian-blog-2-coolify-build.png)
 
-Once that was set up
+Once the container was up and running in Coolify, and I confirmed that all the requirements for the script were in place, and logging in, running the script with `/app/sync-posts.py` (multiple times) would all work as expected, I moved on to setting up the schedule. I set it up to run hourly.
 
 ![obsidian-blog-2-coolify-schedule.png](@/assets/blog/obsidian-blog-2-coolify-schedule.png)
+
