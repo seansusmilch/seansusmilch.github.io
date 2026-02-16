@@ -81,4 +81,14 @@ Since I'm running Coolify on this VM, I want to be able to view logs and control
 So now the idea is this: Have a docker container running, idling, until Coolify's scheduling system attaches and runs the script to push posts up to the blog repo.
 ### Using Docker as an Always on Machine
 
-This was my first challenge. I've never had a docker container just running as another "machine" to attach to. 
+This was my first challenge. I've never had a docker container just running as another "machine" to attach to. The entire point of docker to my understanding is one process per container. No process, no container.
+
+I don't think this is an *ideal* use of docker, but that's not important to me right now, getting something working is.
+
+The solution to this is pretty simple. Just have your container sleep indefinitely 😅
+
+```Dockerfile
+# Rest of Dockerfile
+
+CMD ["sleep", "infinity"]
+```
