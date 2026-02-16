@@ -47,7 +47,6 @@ I originally thought of trying to refactor the existing GitHub action to connect
 
 **Hmm...but is this good opsec?**
 
-%% maybe do less of a privacy play or include that my previous setup had a big oversight %%
 NO! Well, it depends. Think about it. With Syncthing, your entire Obsidian vault would be copied onto a GitHub actions runner, and the credentials to do it would be saved in GitHub.
 
 Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy as I want to keep my notes locked down as much as reasonably possible. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a GitHub action.
@@ -374,7 +373,6 @@ Once the container was up and running in Coolify, and I confirmed that all the r
 Now, on an hourly basis, Coolify will run my script inside an alpine container to sync my posts! Here's the high level overview of what the pipeline looks like now.
 
 ![Pasted image 20260215234759.png](@/assets/blog/Pasted%20image%2020260215234759.png)
-%% This diagram is saved in my google drive %%
 
 This setup removes a ton of friction that I experience when managing a blog. No more worrying about GitHub actions having all my notes, no more dependency on Nextcloud and Remotely Save. All my posts kept in sync with my Obsidian notes allows me to have the best experience writing, and making small updates to existing posts quick and effortless.
 

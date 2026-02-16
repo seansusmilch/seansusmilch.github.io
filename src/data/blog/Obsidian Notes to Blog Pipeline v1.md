@@ -15,6 +15,7 @@ tags:
   - obsidian
   - file-synchronization
 ---
+> UPDATE Feb 16th, 2026: I've migrated my Obsidian to blog pipeline to a new architecture. One that uses Syncthing in place of Nextcloud and the Remotely Save Obsidian plugin. Check it out here: [My Overengineered Obsidian Blog Pipeline](https://seansusmilch.github.io/posts/obsidian-to-blog-pipeline-v2/)
 
 I recently set up a workflow that allows my Obsidian notes to automatically sync between devices and also update my blog without any manual intervention. This was accomplished using the **Remotely Save** plugin for Obsidian, a **Nextcloud WebDAV** connection, a **GitHub Action** that runs a **Python script** that syncs posts to the repository, and another action to **deploy to GitHub Pages**.
 
