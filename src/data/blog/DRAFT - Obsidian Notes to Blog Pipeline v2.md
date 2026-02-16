@@ -78,3 +78,7 @@ As I've talked about in my post about [Syncthing and Obsidian](https://seansusmi
 
 Since I'm running Coolify on this VM, I want to be able to view logs and control deploys, and set the scheduled sync job through Coolify's WebUI. This means that dockerizing my solution would offer me the best experience.
 
+So now the idea is this: Have a docker container running, idling, until Coolify's scheduling system attaches and runs the script to push posts up to the blog repo.
+### Using Docker as an Always on Machine
+
+This was my first challenge. I've never had a docker container just running as another "machine" to attach to. 
