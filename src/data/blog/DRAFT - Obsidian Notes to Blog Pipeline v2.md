@@ -145,3 +145,4 @@ Once the container was up and running in Coolify, and I confirmed that all the r
 
 ![obsidian-blog-2-coolify-schedule.png](@/assets/blog/obsidian-blog-2-coolify-schedule.png)
 
+Now, on an hourly basis, Coolify will run my script inside an alpine container to sync my posts! Here's the high level overview of what the pipeline looks like now.
