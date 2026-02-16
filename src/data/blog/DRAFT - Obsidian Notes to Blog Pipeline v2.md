@@ -2,10 +2,10 @@
 author: Sean
 pubDatetime: 2026-02-06T13:42:00Z
 slug: obsidian-to-blog-pipeline-v2
-title: Obsidian Notes to Blog Pipeline v2
-description: My updated pipeline that brings my Obsidian notes to my blog automatically
+title: My Overengineered Obsidian Blog Pipeline
+description: My updated pipeline that brings my Obsidian notes to my blog automatically using Python, Docker, and Coolify schedules.
 featured: true
-draft: true
+draft: false
 tags:
   - obsidian
   - automation
@@ -13,12 +13,13 @@ tags:
   - project
   - homelab
   - python
+  - coolify
 ---
 ## Table of contents
 
 This post lays out my new Obsidian to blog pipeline that re-architects it to a *push* strategy instead of the previous *pull* strategy. With my switch from RemotelySave to [Syncthing as my Obsidian syncing solution of choice](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/), I wanted to eliminate another dependency in my Obsidian to blog pipeline, Nextcloud. Removing this dependency, along with my experience setting up the old pipeline, resulted in a much smoother and simpler pipeline to keep my blog in sync with my Obsidian notes.
 
-## Review
+## Review of the Old Pipeline
 
 Before we get into the new, lets have a quick review of the old. My old stack can be summed up to this order of events:
 
@@ -35,40 +36,59 @@ On Github
 6. Pull attached images into repo
 7. Commit & push
 
+![image_obsidian-to-blog-pipeline.png](@/assets/blog/image_obsidian-to-blog-pipeline.png)
+*diagram of the old pipeline*
+
 My problems with this setup, especially after switching to Syncthing for my syncing needs, was that it depended on getting my notes into Nextcloud. This was nowhere near as convenient It was a clear next dependency to remove from the pipeline. Also, all the credentials to connect to my entire Nextcloud instance would be saved and used in GitHub
 
 ## What's The Next Solution? 
 
-I originally thought of trying to refactor the existing GitHub action to connect to my Syncthing network, but after thinking about it for awhile, its a questionable architecture in terms of privacy. 
+I originally thought of trying to refactor the existing GitHub action to connect to my Syncthing network. After all, it would be a more drop in replacement that would require less change in my existing setup. Just replace Remotely Save and Nextcloud with Syncthing!
+
+**Hmm...but is this good opsec?**
 
 %% maybe do less of a privacy play or include that my previous setup had a big oversight %%
-Think about it, your entire Obsidian vault would be copied onto a GH action runner, and the credentials to do it would be saved in GitHub. Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a github action.
+NO! Well, it depends. Think about it. With Syncthing, your entire Obsidian vault would be copied onto a GitHub actions runner, and the credentials to do it would be saved in GitHub.
 
-I acknowledge that my previous setup where GitHub Actions would connect to my notes via Next Cloud wasnt any better and was probably a big oversight in terms of privacy and opsec. 
+Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a GitHub action.
 
-This is when I realized a push strategy coming from a machine that I control would be preferred.
+After coming to this conclusion for this new pipeline, I have to acknowledge that my previous setup where GitHub Actions would connect to my notes via Nextcloud wasn't any better and was probably a big oversight in terms of privacy and opsec. You live and you learn.
+
+This is when I started thinking up a *push* strategy coming from a machine in my homelab.
+
+## Push vs Pull Strategy Comparison
+
+| Aspect                     | Pull Strategy (GitHub Actions)                                     | Push Strategy (Self-Hosted)                        | Winner   |
+| -------------------------- | ------------------------------------------------------------------ | -------------------------------------------------- | -------- |
+| **Privacy**                | GitHub has credentials to your vault; vault contents on GH runners | Your server only; GitHub sees only committed posts | **Push** |
+| **Infrastructure**         | None required (GitHub hosts)                                       | Needs 24/7 server (Oracle Cloud, home server, VPS) | **Pull** |
+| **Setup Complexity**       | Configure GitHub Actions, store secrets                            | Docker container, server setup, scheduling         | **Pull** |
+| **Ongoing Costs**          | Free (GitHub Actions free tier)                                    | Free tier cloud VM or existing hardware            | **Tie**  |
+| **Real-time Sync**         | Scheduled (freq. limited by GH action minutes)                     | Scheduled (any time you want)                      | **Push** |
+| **Failed Sync Visibility** | GitHub Actions logs                                                | Coolify logs or server logs                        | **Tie**  |
+| **Dependency Count**       | GitHub + Nextcloud + Obsidian plugin                               | Syncthing + Coolify/Docker                         | **Push** |
+| **Backup/Recovery**        | GitHub history                                                     | GitHub history (same)                              | **Tie**  |
+| **Mobile Editing**         | Works (sync to cloud)                                              | Works (Syncthing)                                  | **Tie**  |
+
+For my personal setup, the win for the push strategy comes mainly from the dropped dependencies and the privacy aspects.
 
 ## The Push Strategy
 
-The push strategy comes with many advantages over the previous pull strategy.
-
-- I can run it on an existing server that's on 24 7.
-- I won't need to waste gitHub Action runs that result in no changes
-- gitHub will never have full access to my notes like it did with the pull strategy.
-
-%% add a graphic here to explain the flow visually %%
 So the basic idea is this. I write my notes on my laptop in Obsidian. With Syncthing, my notes get synced up to my always on server. Then, on a schedule, a script that takes care of the pushing gets run.
 
 At a high level, that script is responsible for the following: 
 
 1. Set up git credentials and clone blog repo 
-2. Find anchor file within vault (`! BLOG_POSTS!.md`)
+2. Find anchor file within vault (`!BLOG_POSTS!.md`)
 3. Sync obsidian blog post notes to blog repo 
 4. In each post convert image wikilinks to markdown links
 5. Sync images that are referenced in posts to blog repo
 6. Commit and push
 
-It's pretty similar to the script from the pull strategy, except we are dealing with git instead of nextcloud
+![Pasted image 20260216002638.png](@/assets/blog/Pasted%20image%2020260216002638.png)
+*A quick sketch of what I wanted in my Obsidian to blog pipeline*
+
+It's pretty similar to the script from the pull strategy, except we are dealing with git instead of Nextcloud
 
 ## Technical Execution
 
@@ -326,8 +346,13 @@ if __name__ == "__main__":
 
 AI helped me clean up and make things readable, as well as providing some thoughtful logging to help me debug issues. The `main()` function keeps it high level, but here's a simple breakdown of the script.
 
-1. Sparse checkout the blog GitHub repository into a temporary folder
-2. In the 
+1. Sparse checkout the blog GitHub repository (`REPO_URL`) using the access token (`GH_PAT`) into a temporary folder
+2. In my Obsidian vault (`SOURCE_DIR`), search for the `ANCHOR_FILENAME`
+3. Sync posts from the source path + anchor path to the repo path + `DEST_POSTS`
+4. Resolve Obsidian wikilink images to an AstroJS path using `ATTATCHMENT_PREFIX` and markdown link syntax
+5. Sync relevant images to repo path + `DEST_POSTS`
+6. Set up `GIT_EMAIL`, `GIT_NAME` and commit and push to blog repository
+7. Cleanup and delete temp blog repo folder
 
 ### Coolify Setup
 
@@ -339,7 +364,7 @@ The build setup was simple. In my blog repo, I put this posts syncing project in
 
 Next, I had to make sure it had access to my Obsidian vault by adding a bind mount via the **Persistent Storage** page.
 
-
+![Pasted image 20260216000202.png](@/assets/blog/Pasted%20image%2020260216000202.png)
 
 Once the container was up and running in Coolify, and I confirmed that all the requirements for the script were in place, and logging in, running the script with `/app/sync-posts.py` (multiple times) would all work as expected, I moved on to setting up the schedule. I set it up to run hourly.
 
@@ -351,4 +376,4 @@ Now, on an hourly basis, Coolify will run my script inside an alpine container t
 ![Pasted image 20260215234759.png](@/assets/blog/Pasted%20image%2020260215234759.png)
 %% This diagram is saved in my google drive %%
 
-
+This setup removes a ton of friction that I experience when managing a blog. All my posts kept in sync with my Obsidian notes allows me to have the best experience writing, and making small updates to existing posts effortless. 
