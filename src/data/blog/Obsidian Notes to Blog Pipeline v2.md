@@ -3,7 +3,7 @@ author: Sean
 pubDatetime: 2026-02-06T13:42:00Z
 slug: obsidian-to-blog-pipeline-v2
 title: My Overengineered Obsidian Blog Pipeline
-description: This post lays out my new Obsidian to blog pipeline that re-architects it to a push strategy instead of the previous pull strategy. My updated pipeline that brings my Obsidian notes to my blog automatically using Python, Docker, and Coolify schedules.
+description: Laying out the re-architecting of my Obsidian Blog pipeline to a push strategy instead of the previous pull strategy using Python, Docker, and Coolify schedules.
 featured: true
 draft: false
 tags:
