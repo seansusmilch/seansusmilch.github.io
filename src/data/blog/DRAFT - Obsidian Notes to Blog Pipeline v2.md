@@ -74,7 +74,7 @@ It's pretty similar to the script from the pull strategy, except we are dealing 
 
 Now that we have a basic understanding of what we are trying to do, let's get into the execution of setting up this workflow.
 
-As I've talked about in my post about [Syncthing and Obsidian](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/), I have a VM in Oracle Cloud that is running 24.7, and acting as a persistent syncthing node. This makes it a perfect place to have this script run on a schedule.
+As I've talked about in my post about [Syncthing and Obsidian](https://seansusmilch.github.io/posts/obsidian-syncthing-private-sync-guide/), I have a VM in Oracle Cloud that is running 24.7, and acting as a persistent Syncthing node. This makes it a perfect place to have this script run on a schedule.
 
 Since I'm running Coolify on this VM, I want to be able to view logs and control deploys, and set the scheduled sync job through Coolify's WebUI. This means that dockerizing my solution would offer me the best experience.
 
@@ -88,7 +88,52 @@ I don't think this is an *ideal* use of docker, but that's not important to me r
 The solution to this is pretty simple. Just have your container sleep indefinitely 😅
 
 ```Dockerfile
-# Rest of Dockerfile
+FROM alpine
 
 CMD ["sleep", "infinity"]
 ```
+
+This allows the container to stay running and allow me to attach to it to figure out what I all need to get this working.
+
+After attaching to the container with `docker exec -it <container name> /bin/sh`, I began setting up my script and noting down all the requirements for smooth execution:
+
+- Rsync, Python and Git installed
+- Various env vars
+	- Repo url
+	- Git username, email, personal access token
+	- Source dirs and destination dirs
+	- Anchor filename
+	- Astro image link prefix
+- Sync posts script (with executable flag!)
+
+Here's my final [`Dockerfile`](https://github.com/seansusmilch/seansusmilch.github.io/blob/637b46fc48201cc9e767b1cd990bdc7b01925cef/sync-posts/Dockerfile) that has everything I needs
+
+```Dockerfile
+FROM alpine
+
+ENV SOURCE_DIR=/data
+ENV ANCHOR_FILENAME=!BLOG_POSTS!.md
+ENV REPO_URL=
+ENV GH_PAT=
+ENV DEST_POSTS=src/data/blog
+ENV DEST_ATTACHMENTS=src/assets/blog
+ENV ATTACHMENT_PREFIX=@/assets/blog
+ENV GIT_EMAIL=action@github.com
+ENV GIT_NAME="Sync Posts Bot"
+
+WORKDIR /app
+
+RUN apk add --no-cache rsync python3 git
+
+COPY . .
+
+RUN chmod +x sync-posts.py
+
+CMD ["sleep", "infinity"]
+```
+
+
+
+![obsidian-blog-2-coolify-build.png](@/assets/blog/obsidian-blog-2-coolify-build.png)
+
+![obsidian-blog-2-coolify-schedule.png](@/assets/blog/obsidian-blog-2-coolify-schedule.png)
