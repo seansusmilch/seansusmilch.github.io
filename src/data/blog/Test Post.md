@@ -11,7 +11,7 @@ tags:
 ---
 Just a test page
 
-# Table of contents
+## Table of contents
 
 ## PKM Features/Other
 

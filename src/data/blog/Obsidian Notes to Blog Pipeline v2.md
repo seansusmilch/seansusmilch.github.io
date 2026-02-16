@@ -3,7 +3,7 @@ author: Sean
 pubDatetime: 2026-02-06T13:42:00Z
 slug: obsidian-to-blog-pipeline-v2
 title: My Overengineered Obsidian Blog Pipeline
-description: My updated pipeline that brings my Obsidian notes to my blog automatically using Python, Docker, and Coolify schedules.
+description: This post lays out my new Obsidian to blog pipeline that re-architects it to a push strategy instead of the previous pull strategy. My updated pipeline that brings my Obsidian notes to my blog automatically using Python, Docker, and Coolify schedules.
 featured: true
 draft: false
 tags:
@@ -39,7 +39,7 @@ On Github
 ![image_obsidian-to-blog-pipeline.png](@/assets/blog/image_obsidian-to-blog-pipeline.png)
 *diagram of the old pipeline*
 
-My problems with this setup, especially after switching to Syncthing for my syncing needs, was that it depended on getting my notes into Nextcloud. This was nowhere near as convenient It was a clear next dependency to remove from the pipeline. Also, all the credentials to connect to my entire Nextcloud instance would be saved and used in GitHub
+My problems with this setup, especially after switching to Syncthing for my syncing needs, was that it depended on getting my notes into Nextcloud. This was nowhere near as convenient It was a clear next dependency to remove from the pipeline. Also, all the credentials to connect to my entire Nextcloud instance would be saved and used in GitHub.
 
 ## What's The Next Solution? 
 
@@ -50,7 +50,7 @@ I originally thought of trying to refactor the existing GitHub action to connect
 %% maybe do less of a privacy play or include that my previous setup had a big oversight %%
 NO! Well, it depends. Think about it. With Syncthing, your entire Obsidian vault would be copied onto a GitHub actions runner, and the credentials to do it would be saved in GitHub.
 
-Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a GitHub action.
+Since I keep my blog posts in the same vault as my personal notes, I said no thanks to this strategy as I want to keep my notes locked down as much as reasonably possible. Also, it has never been done before (to my knowledge) and I would be paving the way in getting Syncthing to work in a GitHub action.
 
 After coming to this conclusion for this new pipeline, I have to acknowledge that my previous setup where GitHub Actions would connect to my notes via Nextcloud wasn't any better and was probably a big oversight in terms of privacy and opsec. You live and you learn.
 
@@ -376,4 +376,8 @@ Now, on an hourly basis, Coolify will run my script inside an alpine container t
 ![Pasted image 20260215234759.png](@/assets/blog/Pasted%20image%2020260215234759.png)
 %% This diagram is saved in my google drive %%
 
-This setup removes a ton of friction that I experience when managing a blog. All my posts kept in sync with my Obsidian notes allows me to have the best experience writing, and making small updates to existing posts effortless. 
+This setup removes a ton of friction that I experience when managing a blog. No more worrying about GitHub actions having all my notes, no more dependency on Nextcloud and Remotely Save. All my posts kept in sync with my Obsidian notes allows me to have the best experience writing, and making small updates to existing posts quick and effortless.
+
+This setup isn't for everyone, and it certainly isn't perfect. It requires more infrastructure with an always-on server, some Docker knowledge, and a bit more configuration. But if you're already running a Docker based homelab, it could be a decent solution that keeps your data under your control.
+
+For more info and complete code, check out the `sync-posts/` folder in my [blog repository](https://github.com/seansusmilch/seansusmilch.github.io/tree/c293626d5ce6fcc56cfd0f34f003f10eb956110a/sync-posts). If you end up adapting this for your own setup, I'd love to hear about it!
