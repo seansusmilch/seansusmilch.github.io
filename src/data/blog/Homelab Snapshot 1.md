@@ -2,7 +2,7 @@
 author: Sean
 pubDatetime: 2025-02-28T09:54:00Z
 slug: homelab-snapshot-1
-title: 'Self-Hosting Everything: A Dive into My Proxmox-Powered Homelab'
+title: "Self-Hosting Everything: A Dive into My Proxmox-Powered Homelab"
 description: A quick rundown of what’s running in my homelab
 featured: true
 draft: false
@@ -15,6 +15,7 @@ tags:
   - nfs
   - media-server
   - homelab
+  - coolify
 ---
 
 ![image_homelab-server-rack.png](@/assets/blog/image_homelab-server-rack.png)
