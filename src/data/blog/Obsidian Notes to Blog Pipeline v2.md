@@ -2,7 +2,7 @@
 author: Sean
 pubDatetime: 2026-02-06T13:42:00Z
 slug: obsidian-to-blog-pipeline-v2
-title: My Overengineered Obsidian Blog Pipeline
+title: "Syncthing + Coolify: My Automated Obsidian Blog Workflow"
 description: Laying out the re-architecting of my Obsidian Blog pipeline to a push strategy instead of the previous pull strategy using Python, Docker, and Coolify schedules.
 featured: true
 draft: false
