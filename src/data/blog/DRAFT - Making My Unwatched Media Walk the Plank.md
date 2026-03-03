@@ -24,14 +24,27 @@ After dropping everything to troubleshoot, I found the culprit: my NAS was compl
 
 **Friendly reminder to check your media server. Are you running out of space?**
 
-If you are, you know the pain. It's an endless cycle of second-guessing yourself while staring at a list of files:
+If you are, you know the pain. It's an endless cycle of questioning to yourself while staring at a list of files:
 
-> _When was the last time anyone watched this? This show is taking up so much space, but my friend is still watching it… I can’t delete that!_
+> _What do I delete in here? This show is taking up so much space...but I like this show so I'm not gonna delete it_
 
 All that work, only for the problem to return a few weeks later. Manually digging through terabytes to find what to delete is a challenge, and I needed a way to make this task less monotonous.
 ## Introducing Diskover
 
-## Least Watched
+[Diskover Data](https://diskoverdata.com/) is a self hosted solution to answer the question "what's taking up all my space?". It provides a nice UI that makes bigger files visually bigger to help put things in perspective. They offer an open source [community edition](https://github.com/diskoverdata/diskover-community) that I decided to deploy.
+
+This was my first attempt at solving my annoying perpetually-full storage problem. Every once in awhile, I'll just go in here, find some big shows/movies that would be easy wins if I delete them and be done with it.
+
+Then I was running into another problem in trying to figure out what to delete:
+
+> _When was the last time anyone watched this? 
+> 
+> This show is taking up so much space, but my friend is still watching it… I can’t delete that!_
+
+I've heard of projects like EmbyStat and JellyStat, but neither offered the data and interface that I wanted. I wanted something dead simple that I could set up once with all my preferred criteria for what can/should be deleted first, then come to it when needed and instantly know what I should delete. No thinking necessary.
+
+## Introducing: Least Watched
+
 
 # Old
 Welp, if you're anything like me, you've probably got a mountain of digital content you've accumulated over the years. Movies, TV shows, Linux ISOs (😉) – they just pile up, consuming gigabyte after gigabyte on your drives. For us "data hoarders," it's easy to forget what’s even in there, let alone what’s been watched. This isn't just about digital clutter; it leads to **wasted storage space**, and trust me, it can cause critical issues. I literally **ran out of space on zhydra**, and that caused my Nextcloud instance to completely stop working! Talk about a messy pain in the ass!
