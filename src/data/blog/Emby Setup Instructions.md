@@ -5,7 +5,7 @@ slug: emby-setup-instructions
 title: How To Set Up Emby
 description: A guide for a new end user setting up Emby for the first time
 featured: false
-draft: false
+draft: true
 tags:
   - emby
   - guide
