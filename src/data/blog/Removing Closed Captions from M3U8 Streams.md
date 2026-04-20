@@ -51,5 +51,3 @@ For context, I'm using [Threadfin](https://github.com/Threadfin/Threadfin) to pr
   -fflags +nobuffer
   pipe:1
   ```
-
-  If you find any FFmpeg options that could be improved, drop a comment below

@@ -93,6 +93,18 @@ In addition to my home setup, I also have a **free-tier ARM server in Oracle Clo
 
 The key is [Docker Compose](https://docs.docker.com/compose/). Over the years, I've found a deployment "format" that I like to keep all of my services in, and I've laid it out in a list of rules.
 
+```
+docker/
+├─ service1/
+│  ├─ config/
+│  ├─ data/
+│  ├─ compose.yml
+├─ service2/
+   ├─ config/
+   ├─ compose.yml
+
+```
+
 1. Services are deployed using docker
    - No crazy long "Getting started" docs required
    - Write your own `Dockerfile` if you have to
